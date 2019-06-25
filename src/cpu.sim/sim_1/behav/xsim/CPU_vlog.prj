@@ -1,0 +1,24 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../cpu.srcs/sources_1/ip/RAM/sim/RAM.v" \
+
+sv xil_defaultlib  \
+"../../../../cpu.srcs/sources_1/new/ALUControl.sv" \
+"../../../../cpu.srcs/sources_1/new/Control.sv" \
+"../../../../cpu.srcs/sources_1/new/Execute.sv" \
+"../../../../cpu.srcs/sources_1/new/ForwardingUnit.sv" \
+"../../../../cpu.srcs/sources_1/new/HazardDetection.sv" \
+"../../../../cpu.srcs/sources_1/new/InstructionCache.sv" \
+"../../../../cpu.srcs/sources_1/new/InstructionDecode.sv" \
+"../../../../cpu.srcs/sources_1/new/InstructionFetch.sv" \
+"../../../../cpu.srcs/sources_1/new/Memory.sv" \
+"../../../../cpu.srcs/sources_1/imports/MyRISCyCPU/RegisterFile.sv" \
+"../../../../cpu.srcs/sources_1/new/Writeback.sv" \
+"../../../../cpu.srcs/sources_1/imports/MyRISCyCPU/alu.sv" \
+"../../../../cpu.srcs/sources_1/imports/MyRISCyCPU/CPU.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

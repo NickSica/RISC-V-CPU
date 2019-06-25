@@ -1,0 +1,21 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/imports/MyRISCyCPU/CPU.sv,1561423209,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Control.sv,,CPU,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/imports/MyRISCyCPU/RegisterFile.sv,1561413432,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Writeback.sv,,RegisterFile,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/imports/MyRISCyCPU/alu.sv,1559776907,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/CPU_tb.sv,,ALU,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/ip/RAM/sim/RAM.v,1559771635,verilog,,,,RAM,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/ALUControl.sv,1561422213,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/imports/MyRISCyCPU/CPU.sv,,ALUControl,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/CPU_tb.sv,1561415356,systemVerilog,,,,CPU_tb,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Control.sv,1561420363,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Execute.sv,,Control,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Execute.sv,1561422188,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/ForwardingUnit.sv,,Execute,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/ForwardingUnit.sv,1561413432,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/HazardDetection.sv,,ForwardingUnit,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/HazardDetection.sv,1560186393,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/InstructionCache.sv,,HazardDetection,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/InstructionCache.sv,1561415431,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/InstructionDecode.sv,,InstructionCache,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/InstructionDecode.sv,1561419422,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/InstructionFetch.sv,,InstructionDecode,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/InstructionFetch.sv,1561413432,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Interfaces.sv,,InstructionFetch,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Interfaces.sv,1561421038,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Memory.sv,,EXtoMEM;IDtoEX;IFtoID;MEMtoWB,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Memory.sv,1561413432,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/imports/MyRISCyCPU/RegisterFile.sv,,Memory,,,,,,,,
+C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/new/Writeback.sv,1561413432,systemVerilog,,C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.srcs/sources_1/imports/MyRISCyCPU/alu.sv,,Writeback,,,,,,,,
