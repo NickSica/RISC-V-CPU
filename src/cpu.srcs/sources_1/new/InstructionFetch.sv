@@ -23,13 +23,13 @@
 module InstructionFetch(input logic clk, pcSrc, en_pc, en_IF, flush, w_en,
                         input logic[31:0] branchPC, machineCode,
                         output logic[31:0] pc, instr);
-    logic[31:0] tempPC = 32'b0, tempInstr;
+    logic[31:0] nextPC = 32'b0, tempInstr;
     
     always_comb begin
         if(en_pc) begin
             case(pcSrc)
-                1'b0: tempPC = pc;
-                1'b1: tempPC = branchPC;
+                1'b0: nextPC = pc + 4;
+                1'b1: nextPC = branchPC;
             endcase
         end 
         
@@ -42,9 +42,9 @@ module InstructionFetch(input logic clk, pcSrc, en_pc, en_IF, flush, w_en,
     
     always_ff @(posedge clk) begin
         if(en_pc) begin
-            pc <= tempPC + 4;
+            pc <= nextPC;
         end
     end
     
-    InstructionCache instrCache(.clk, .w_en, .w_instr(machineCode), .addr(tempPC), .instr(tempInstr));
+    InstructionCache instrCache(.w_en, .w_instr(machineCode), .addr(pc), .instr(tempInstr));
 endmodule
