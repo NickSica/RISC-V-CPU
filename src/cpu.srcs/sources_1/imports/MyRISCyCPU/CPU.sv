@@ -2,9 +2,9 @@ module CPU(input logic clk, w_en,
            input logic[31:0] machineCode);
     
     logic en_pc = 1'b1, en_IF = 1'b1, flush = 1'b0, pcSrc = 1'b0, aluSrc, regDst;
-    logic[31:0] pc = 32'b0, instr, branchPC, rsData = 32'b0, rtData = 32'b0, imm, aluResult, rdData, w_ramData, r_ramData;
-    logic[4:0] rd;
     logic[1:0] aluOp;
+    logic[4:0] rd;
+    logic[31:0] pc = 32'b0, instr, branchPC, rsData = 32'b0, rtData = 32'b0, imm, aluResult, rdData, w_ramData, r_ramData;
     
     InstructionFetch instrFetch(.clk, .pcSrc, .en_pc, .en_IF, .flush, .w_en, .branchPC, .machineCode,
                                 .pc, .instr);

@@ -25,13 +25,14 @@ module HazardDetection(input logic memRead, branchTaken,
                        output logic inhibitControl, flush, en_pc, en_IF);
 
     always_comb begin
+        /*
         if(branchTaken) begin
             en_pc = 1'b1;
             en_IF = 1'b0;
             flush = 1'b1;
             inhibitControl = 1'b0;
         end 
-        
+        */
         if( ((prevRt == rs) || (prevRt == rs)) && (memRead == 1'b1) ) begin
             en_pc = 1'b0;
             en_IF = 1'b0;

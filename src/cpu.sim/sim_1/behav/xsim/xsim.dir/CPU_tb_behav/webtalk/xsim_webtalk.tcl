@@ -1,6 +1,6 @@
-webtalk_init -webtalk_dir C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/
+webtalk_init -webtalk_dir C:/Users/xoepe/Documents/RISC-V-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Mon Jun 24 20:47:04 2019" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Thu Jun 27 01:59:32 2019" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2018.3 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2405991" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "a990509b-5269-4fcf-afd9-9fd658e8543f" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "7b8431bc0c174e7e9b984e2031874ba1" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "170" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "178" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Microsoft Windows 8 or later , 64-bit" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i5-6600K CPU @ 3.50GHz" -context "user_environment"
@@ -24,9 +24,9 @@ webtalk_add_data -client project -key system_ram -value "17.000 GB" -context "us
 webtalk_register_client -client xsim
 webtalk_add_data -client xsim -key Command -value "xsim" -context "xsim\\command_line_options"
 webtalk_add_data -client xsim -key trace_waveform -value "true" -context "xsim\\usage"
-webtalk_add_data -client xsim -key runtime -value "3100 ns" -context "xsim\\usage"
-webtalk_add_data -client xsim -key iteration -value "2" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Time -value "0.03_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Simulation_Memory -value "6364_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 2456941699 -regid "" -xml C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/xoepe/Documents/MIPS-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key runtime -value "3 us" -context "xsim\\usage"
+webtalk_add_data -client xsim -key iteration -value "1" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Time -value "0.01_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Simulation_Memory -value "6368_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 3027503209 -regid "" -xml C:/Users/xoepe/Documents/RISC-V-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/xoepe/Documents/RISC-V-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/xoepe/Documents/RISC-V-CPU/src/cpu.sim/sim_1/behav/xsim/xsim.dir/CPU_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate
