@@ -21,8 +21,7 @@
 
 
 module InstructionCache#(parameter addrW = 32, instrW = 32, length = 100, bytesPerWord = instrW >> 3)
-                        (input logic clk,
-                         input logic w_en,
+                        (input logic w_en,
                          input logic[instrW-1:0] w_instr,
                          input logic[addrW-1:0] addr, 
                          output logic[instrW-1:0] instr);
@@ -35,9 +34,7 @@ module InstructionCache#(parameter addrW = 32, instrW = 32, length = 100, bytesP
             cache[w_addr] = w_instr;
             w_addr = w_addr + 32'b100;
         end
-    end
-    
-    always_ff @(posedge clk) begin
+        
         instr <= cache[addr];
     end
 endmodule
