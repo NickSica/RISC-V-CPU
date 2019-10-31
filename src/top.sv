@@ -18,11 +18,11 @@
 *********************************************************************************/
 `timescale 1ns / 1ps
 `include "Interfaces.sv"
-`include "InstructionFetch/InstructionFetch.sv"
-`include "InstructionDecode/InstructionDecode.sv"
-`include "Execute/Execute.sv"
-`include "Memory/Memory.sv"
-`include "Writeback/Writeback.sv"
+`include "InstructionFetch.sv"
+`include "InstructionDecode.sv"
+`include "Execute.sv"
+`include "Memory.sv"
+`include "Writeback.sv"
 
 module CPU(input logic clk, w_en,
            input logic[31:0] machineCode);

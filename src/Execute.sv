@@ -17,7 +17,7 @@
  * 
 *********************************************************************************/
 `timescale 1ns / 1ps
-`include "../Interfaces.sv"
+`include "Interfaces.sv"
 `include "ALU.sv"
 `include "ALUControl.sv"
 `include "ForwardingUnit.sv"
@@ -65,3 +65,13 @@ module Execute(IDtoEX id_ex,
         endcase 
     end 
 endmodule: Execute
+
+
+
+
+
+
+
+
+
+

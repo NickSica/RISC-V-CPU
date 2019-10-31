@@ -1,3 +1,22 @@
+/*********************************************************************************
+ * Engineer: Nicholas Sica
+ * 
+ * Create Date: 06/05/2019 09:53:04 PM
+ * Design Name: 
+ * Module Name: ALU
+ * Project Name: RISC-V-CPU
+ * Target Devices: 
+ * Tool Versions: 
+ * Description: 
+ * 
+ * Dependencies: 
+ * 
+ * Revision:
+ * Revision 0.01 - File Created
+ * Additional Comments:
+ * 
+*********************************************************************************/
+
 module ALU(input logic[3:0] ctrlSignal, 
            input logic[31:0] op1, op2, 
            output logic[31:0] result);

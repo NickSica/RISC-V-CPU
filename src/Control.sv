@@ -18,6 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`include "Interfaces.sv"
 
 module Control(input logic inhibitControl,
                input logic[31:0] instr,

@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 /*********************************************************************************
  * Engineer: Nicholas Sica
  * 
@@ -16,7 +17,6 @@
  * Additional Comments:
  * 
 *********************************************************************************/
-`timescale 1ns / 1ps
 
 module ALUControl(input logic[1:0] aluOp,
                   input logic[5:0] funct,
@@ -31,4 +31,4 @@ module ALUControl(input logic[1:0] aluOp,
             8'b10101010:              ctrlSignal = 4'b0111; // Commands that use Set if Less Than
         endcase
     end
-endmodule: ALUControl
+endmodule

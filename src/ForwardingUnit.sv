@@ -1,24 +1,23 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 05/30/2019 03:34:10 PM
-// Design Name: 
-// Module Name: ForwardingUnit
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
+/*********************************************************************************
+ * Engineer: Nicholas Sica
+ * 
+ * Create Date: 05/30/2019 03:34:10 PM
+ * Design Name: 
+ * Module Name: ForwardingUnit
+ * Project Name: RISC-V-CPU
+ * Target Devices: 
+ * Tool Versions: 
+ * Description: 
+ * 
+ * Dependencies: 
+ * 
+ * Revision:
+ * Revision 0.01 - File Created
+ * Additional Comments:
+ * 
+*********************************************************************************/
+`include "Interfaces.sv"
 
 module ForwardingUnit(EXtoMEM.fwd fwdMEM,
                       MEMtoWB.fwd fwdWB,
