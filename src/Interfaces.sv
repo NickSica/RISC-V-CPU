@@ -1,3 +1,6 @@
+`ifndef __INTERFACES__
+ `define __INTERFACES__
+
 interface IFtoID(input logic clk,
                  input logic[31:0] tmpPC, tmpInstr);
     logic[31:0] pc, instr;
@@ -73,3 +76,4 @@ interface MEMtoWB(EXtoMEM.mem mem,
     modport fwd(input rd, regWrite, aluResult);
     modport w_reg(input regWrite, rd);
 endinterface: MEMtoWB
+`endif

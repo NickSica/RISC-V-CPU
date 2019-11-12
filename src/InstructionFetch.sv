@@ -20,7 +20,7 @@
 `include "InstructionCache.sv"
 
 module InstructionFetch(input logic clk, pcSrc, en_pc, en_IF, flush, w_en,
-                        input logic[31:0] branchPC, machineCode,
+                        input logic[31:0] branchPC, cpu_in,
                         output logic[31:0] pc, instr);
     logic[31:0] nextPC = 32'b0, tempInstr;
     
@@ -45,5 +45,6 @@ module InstructionFetch(input logic clk, pcSrc, en_pc, en_IF, flush, w_en,
         end
     end
     
-    InstructionCache instrCache(.w_en, .w_instr(machineCode), .addr(pc), .instr(tempInstr));
+    InstructionCache instrCache(.w_en, .w_instr(cpu_in), .addr(pc), .instr(tempInstr));
 endmodule
+

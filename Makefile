@@ -1,11 +1,22 @@
-vivado = vivado -mode tcl -source
+vivado = vivado -mode batch -source
 script = compile.tcl
-constr = Basys3_Master.xdc
+tb_script = waveform.tcl
+constr = ./V707/constraints.xdc
 
 .PHONY: build clean
 
 build:
 	$(vivado) $(script) -tclargs $(constr) verilog
-        
-clean: build
-	rm -r build
+
+test:
+	xvlog --nolog --sv src/*
+	xvlog --nolog --sv tb/CPU_tb.sv
+	xelab --nolog --debug typical CPU_tb -s top_sim
+	xsim --nolog top_sim -t waveform.tcl
+	xsim --nolog --g --view ./waves/tb.wcfg top_sim
+
+clean: 
+	-rm -r build
+	-rm vivado*
+	-rm webtalk*
+	-rm -r x*

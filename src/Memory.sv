@@ -25,5 +25,5 @@ module Memory(input logic clk,
               input logic[31:0] addr, w_data,
               output logic[31:0] r_data);
 
-    RAM ram(.clka(clk), .ena(1'b1), .wea(memWrite), .addra(addr), .dina(w_data), .douta(r_data));
+    //RAM ram(.clka(clk), .ena(1'b1), .wea(memWrite), .addra(addr), .dina(w_data), .douta(r_data));
 endmodule

@@ -47,7 +47,6 @@ module InstructionDecode(IFtoID if_id,
    always_comb begin        
         pcSrc = ((rsData == rtData) & beq) | ((rsData != rtData) & bne);  // Branch logic
         branchPC = 32'(32'(imm) + if_id.pc);  // Branch logic
-        imm = { {16{if_id.instr[15]}}, if_id.instr[15:0] };
    end
 endmodule
 
