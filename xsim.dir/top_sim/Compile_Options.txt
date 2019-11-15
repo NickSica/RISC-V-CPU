@@ -1,1 +1,0 @@
---nolog --debug "typical" "CPU_tb" -s "top_sim" 
