@@ -16,37 +16,32 @@
  * Additional Comments:
  * 
 *********************************************************************************/
-`timescale 1ns / 1ps
-`include "Interfaces.sv"
-`include "HazardDetection.sv"
-`include "RegisterFile.sv"
-`include "Control.sv"
 
-module InstructionDecode(IFtoID if_id,
-                         MEMtoWB.w_reg w_reg,
-                         input logic clk,
-                         input logic[4:0] prevRt,
-                         input logic[31:0] rdData,
-                         IDtoEX id_ex,
-                         output logic pcSrc, flush, en_pc, en_IF,
-                         output logic[31:0] imm, rsData, rtData, branchPC);
-   logic inhibitControl = 1'b0, beq = 1'b0, bne = 1'b0;
-   logic[4:0] rtNext;
+module InstructionDecode(input logic         clk_i, wr_reg_en_i, wr_reg_dest_i,
+                         input logic [4:0]   ex_rd_i,
+                         input logic [31:0]  instr_i, pc_i,
+			 input logic [63:0]  wr_reg_data_i,
+                         output 	     control_signals_o,
+                         output logic 	     pc_src_o, flush_o, pc_en_o, if_en_o,
+                         output logic [31:0] id_imm_o, id_rs1_data_o, id_rs2_data_o, branch_pc_o);
+   logic inhibit_ctrl = 1'b0;
+   logic[4:0] rt_next;
     
-   HazardDetection hazDet(.memRead(id_ex.memRead), .branchTaken(pcSrc), .prevRt, .rt(if_id.instr[20:16]), .rs(if_id.instr[25:21]), 
-                          .inhibitControl, .flush, .en_pc, .en_IF);
-                           
-   RegisterFile regFile(.clk, .rst(1'b0), .w_en(w_reg.regWrite), .rd(w_reg.rd), .rs(if_id.instr[25:21]), .rt(if_id.instr[20:16]), .rdData(rdData),
-                        .rsData, .rtData);
+   HazardDetection hazard_detection(.r_mem_en_i(control_signals_o.mem_read), .branch_taken_i(pc_src_o), .ex_rd_i, .rs1_i(instr_i[19:15]), .rs2_i(if_id.instr[24:20]), 
+				    .inhibit_ctrl_o(inhibit_ctrl), .flush_o, .pc_en_o, .if_en_o);
+
+   RegisterFile reg_file(.clk_i, .rst_i(1'b0), .rs1_i(instr_i[19:15]), .rs2_i(instr_i[24:20]), .wr_reg_en_i, .wr_reg_data_i, .wr_reg_dest_i,
+                        .rs1_data_o, .rs2_data_o);
                          
-   Control ctrl(.inhibitControl, .instr(if_id.instr), 
-                .id_ex, .beq, .bne);
+   Control ctrl(.inhibit_control_i(inhibit_ctrl), .instr_i(instr_i), 
+                .control_signals_o);
    
-   ImmGen immGen(if_id.instr[6:0], imm);
+   ImmGen imm_gen(.instr_i,
+		  .imm_i(id_imm_o));
      
    always_comb begin        
-        pcSrc = ((rsData == rtData) & beq) | ((rsData != rtData) & bne);  // Branch logic
-        branchPC = 32'(32'(imm) + if_id.pc);  // Branch logic
+        pc_src_o = ((id_rs_data_o == id_rt_data_o) & control_signals_o.beq) | ((id_rs_data_o != id_rt_data_o) & control_signals_o.bne);  // Branch logic
+        branch_pc_o = 32'(32'(id_imm_o) + pc_i);  // Branch logic
    end
 endmodule
 

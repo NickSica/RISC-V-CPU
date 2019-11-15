@@ -17,39 +17,108 @@
  * 
 *********************************************************************************/
 `timescale 1ns / 1ps
-`include "Interfaces.sv"
 `include "InstructionFetch.sv"
 `include "InstructionDecode.sv"
 `include "Execute.sv"
 `include "Memory.sv"
 `include "Writeback.sv"
 
-module CPU(input logic clk, w_en,
-           input logic[31:0] cpu_in);
+module CPU(input logic clk_i, wr_instr_en_i,
+           input logic[31:0] wr_instr_i);
+
+    logic pc_en = 1'b1, if_en = 1'b1, flush = 1'b0, pc_src = 1'b0, alu_src, reg_dst;
+    logic [1:0] alu_op;
+    logic [4:0] rd;
+    logic [31:0] branch_pc, rs_data = 32'b0, rt_data = 32'b0, imm, alu_result, rd_data, wr_ram_data, r_ram_data;
     
-    logic en_pc = 1'b1, en_IF = 1'b1, flush = 1'b0, pcSrc = 1'b0, aluSrc, regDst;
-    logic[1:0] aluOp;
-    logic[4:0] rd;
-    logic[31:0] pc = 32'b0, instr, branchPC, rsData = 32'b0, rtData = 32'b0, imm, aluResult, rdData, w_ramData, r_ramData;
-    
-    InstructionFetch instrFetch(.clk, .pcSrc, .en_pc, .en_IF, .flush, .w_en, .branchPC, .cpu_in,
-                                .pc, .instr);
-    IFtoID if_id(.clk, .tmpPC(pc), .tmpInstr(instr));
-                                
-    InstructionDecode instrDec(.if_id, .clk, .w_reg(mem_wb.w_reg), .prevRt(id_ex.rt), .rdData,
-                               .id_ex, .pcSrc, .flush, .en_pc, .en_IF, .imm, .rsData, .rtData, .branchPC);
-    IDtoEX id_ex(.clk, .instr(if_id.instr), .tmpRsData(rsData), .tmpRtData(rtData), .tmpImm(imm));
-     
-    Execute exe(.id_ex, .fwdMEM(ex_mem.fwd), .fwdWB(mem_wb.fwd),
-                .w_ramData, .aluResult);                   
-    EXtoMEM ex_mem(.ex(id_ex.ex), .clk, .tmpResult(aluResult));
+    logic [31:0] if_pc = 32'b0, if_instr;
+    InstructionFetch if_stage(.clk_i, .pc_src_i(pc_src), .pc_en_i(pc_en), .if_en_i(if_en), .flush_i(flush), .wr_instr_en_i, .branch_pc_i(branch_pc), .wr_instr_i,
+                              .pc_o(if_pc), .instr_o(if_instr));
+
+    InstructionDecode id_stage(.clk_i, .pc_i(if_pc), .instr_i(if_instr), .wr_reg_en_i(wr_reg), .wr_reg_dest_i(), .wr_reg_data_i(), .ex_rd_i(ex_rd), .rd_data_i(rd_data),
+			       .pc_src_o(pc_src), .flush_o(flush), .pc_en_o(pc_en), .if_en_o(if_en), .imm_o(id_imm), .rs1_data_o(id_rs1_data), 
+			       .rs2_data_o(id_rs2_data), .branch_pc_o(branch_pc));
+
+    Execute ex_stage(.fwd_mem_i(ex_fwd), .fwd_wb_i(mem_fwd),
+                     .wr_ram_data_o, .alu_result_o());                   
   
-    Memory mem(.clk, .memWrite(ex_mem.memWrite), .addr(ex_mem.aluResult), .w_data(w_ramData), .r_data(r_ramData));
-    MEMtoWB mem_wb(.clk, .mem(ex_mem.mem)); 
+    Memory mem_stage(.clk, .mem_wr_en_i(ex_mem_wr_en), .addr_i(ex_alu_result), .wr_ram_data_i(wr_ram_data), .r_ram_data_i(r_ram_data),
+		     .alu_result_o(mem_alu_result));
     
-    Writeback wb(.memToReg(mem_wb.memToReg), .r_ramData, .aluResult(mem_wb.aluResult),
-                 .rdData);
+    Writeback wb_stage(.memToReg(mem_wb.mem_to_reg), .r_ramData, .alu_result_i(mem_alu_result),
+                       .rd_data_o);
 endmodule: CPU
+
+`ifndef __INTERFACES__
+ `define __INTERFACES__
+
+interface IDtoEX(input logic clk,
+                 input logic[31:0] instr, tmpRsData, tmpRtData, tmpImm);
+    logic tmpMemRead, memRead, tmpMemToReg, memToReg, tmpRegWrite, regWrite, tmpRegDst, regDst, tmpAluSrc, aluSrc;
+    logic[1:0] tmpAluOp, aluOp;
+    logic[3:0] tmpMemWrite, memWrite;
+    logic[4:0] rs, rt, rd;
+    logic[31:0] imm, rsData, rtData;    
+    
+    always_ff @(posedge clk) begin
+        rs       <= instr[25:21];
+        rt       <= instr[20:16];
+        rd       <= instr[15:11];
+        rsData   <= tmpRsData;
+        rtData   <= tmpRtData;
+        imm      <= tmpImm;
+        memWrite <= tmpMemWrite;
+        memRead  <= tmpMemRead;
+        memToReg <= tmpMemToReg;
+        regWrite <= tmpRegWrite;
+        regDst   <= tmpRegDst;
+        aluOp    <= tmpAluOp;
+        aluSrc   <= tmpAluSrc;
+    end
+    
+    modport ex(input memWrite, memRead, regWrite, memToReg, rd);
+endinterface: IDtoEX
+
+interface EXtoMEM(IDtoEX.ex ex,
+                  input logic clk,
+                  input logic[31:0] tmpResult);
+    logic regWrite, memToReg;
+    logic[3:0] memWrite, memRead;
+    logic[4:0] rd;
+    logic[31:0] aluResult;
+    
+    always_ff @(posedge clk) begin
+        memWrite  <= ex.memWrite;
+        memRead   <= ex.memRead;
+        regWrite  <= ex.regWrite;
+        memToReg  <= ex.memToReg;
+        rd        <= ex.rd;
+        aluResult <= tmpResult;
+    end
+    
+    modport mem(input regWrite, memToReg, rd, aluResult);
+    modport fwd(input regWrite, aluResult, rd);
+endinterface: EXtoMEM
+
+interface MEMtoWB(EXtoMEM.mem mem,
+                  input logic clk);
+    logic regWrite, memToReg;
+    logic[4:0] rd;
+    logic[31:0] aluResult;
+    
+    always_ff @(posedge clk) begin
+        rd        <= mem.rd;
+        aluResult <= mem.aluResult;
+        regWrite  <= mem.regWrite;
+        memToReg  <= mem.memToReg;
+    end
+    
+    modport mux(input memToReg, aluResult);
+    modport fwd(input rd, regWrite, aluResult);
+    modport w_reg(input regWrite, rd);
+endinterface: MEMtoWB
+`endif
+
 
 
 

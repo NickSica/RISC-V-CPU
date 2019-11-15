@@ -20,21 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module InstructionCache#(parameter addrW = 32, instrW = 32, length = 100, bytesPerWord = instrW >> 3)
-                        (input logic w_en,
-                         input logic[instrW-1:0] w_instr,
-                         input logic[addrW-1:0] addr, 
-                         output logic[instrW-1:0] instr);
+module InstructionCache #(parameter addr_wid = 32, instr_wid = 32, length = 100, bytes_per_word = instr_wid >> 3)
+                         (input logic wr_instr_en_i,
+                          input logic [instr_wid-1:0] wr_instr_i,
+                          input logic [addr_wid-1:0]  addr_i, 
+                          output logic [instr_wid-1:0] instr_o);
                         
-    logic[length-1:0][instrW-1:0] cache;
-    logic[addrW-1:0] w_addr = {addrW{1'b0}};
+    logic [length-1:0][instr_wid-1:0] cache_c;
+    logic [addr_wid-1:0] 	      r_addr_c = {addr_wid{1'b0}};
     
     always_comb begin
-        if(w_en == 1'b1) begin
-            cache[w_addr] = w_instr;
-            w_addr = w_addr + 32'b100;
+        if(wr_instr_en_i == 1'b1) begin
+            cache_c[r_addr_c] = wr_instr_i;
+            r_addr_c += 32'b100;
         end
         
-        instr <= cache[addr];
+        wr_instr_i <= cache_c[addr_i];
     end
 endmodule
+
+

@@ -16,31 +16,25 @@
  * Additional Comments:
  * 
 *********************************************************************************/
-`timescale 1ns / 1ps
-`include "Interfaces.sv"
-`include "ALU.sv"
-`include "ALUControl.sv"
-`include "ForwardingUnit.sv"
 
-module Execute(IDtoEX id_ex,  
-               EXtoMEM.fwd fwdMEM,
-               MEMtoWB.fwd fwdWB,
-               output logic[31:0] w_ramData, aluResult);
+module Execute(input logic clk_i, mem_fwd_i, wb_fwd_i, reg_dst_i,
+	       input logic [4:0] rs1_i, rs2_i,
+	       output logic [31:0] w_ramData, aluResult);
 
-    logic[31:0] rtData, rsData;
-    logic[3:0] ctrlSignal;
-    logic[1:0] forwardRs = 2'b0, forwardRt = 2'b0;
+    logic [31:0] rtData, rsData;
+    logic [3:0]  ctrl_signal;
+    logic [1:0]  fwd_rs1 = 2'b0, fwd_rs2 = 2'b0;
     
-    ForwardingUnit fwdUnit(.fwdMEM, .fwdWB, .rs(id_ex.rs), .rt(id_ex.rt),
-                           .forwardRs, .forwardRt);
+    ForwardingUnit fwdUnit(.mem_fwd_i, .wb_fwd_i, .rs1_i, .rs2_i,
+                           .fwd_rs1, .fwd_rs2);
                            
-    ALUControl aluControl(.aluOp(id_ex.aluOp), .funct(id_ex.imm[5:0]), 
-                          .ctrlSignal);
-    ALU alu(.ctrlSignal, .op1(rsData), .op2(rtData), 
-            .result(aluResult));
+    ALUControl alu_ctrl(.alu_op_i(), .funct_i(imm_i[:]), 
+                        .ctrl_signal_o(.ctrl_signal));
+    ALU alu(.ctrl_signal, .op1(rs1_data), .op2(rs2_data), 
+            .result(alu_result_o));
                          
     always_comb begin
-        case(id_ex.regDst)
+        case(reg_dst_i)
             1'b0: id_ex.rd <= id_ex.rt;
             1'b1: id_ex.rd <= id_ex.rd;
         endcase

@@ -16,35 +16,36 @@
  * Additional Comments:
  * 
 *********************************************************************************/
-`timescale 1ns / 1ps
 `include "InstructionCache.sv"
 
-module InstructionFetch(input logic clk, pcSrc, en_pc, en_IF, flush, w_en,
-                        input logic[31:0] branchPC, cpu_in,
-                        output logic[31:0] pc, instr);
-    logic[31:0] nextPC = 32'b0, tempInstr;
+module InstructionFetch(input logic clk_i, pc_src_i, pc_en_i, if_en_i, flush_i, wr_instr_en_i,
+                        input logic[31:0] branch_pc_i, wr_instr_i,
+                        output logic[31:0] pc_o, instr_o);
+    logic[31:0] next_pc_c = 32'b0, temp_instr_c;
     
     always_comb begin
-        if(en_pc) begin
-            case(pcSrc)
-                1'b0: nextPC = pc + 4;
-                1'b1: nextPC = branchPC;
+        if(pc_en_i) begin
+            case(pc_src_i)
+                1'b0: next_pc_c = pc_o + 4;
+                1'b1: next_pc_c = branch_pc_i;
             endcase
         end 
         
-        if(flush) begin
-            instr = 32'b0;
-        end else if(en_IF) begin
-            instr = tempInstr;           
+        if(flush_i) begin
+            instr_o = 32'b0;
+        end else if(if_en_i) begin
+            instr_o = temp_instr_c;           
         end
     end
     
-    always_ff @(posedge clk) begin
-        if(en_pc) begin
-            pc <= nextPC;
+    always_ff @(posedge clk_i) begin
+        if(pc_en_i) begin
+            pc_o <= next_pc_c;
         end
     end
     
-    InstructionCache instrCache(.w_en, .w_instr(cpu_in), .addr(pc), .instr(tempInstr));
+    InstructionCache instrCache(.wr_instr_en_i, .wr_instr_i, .addr_i(pc_o), .instr_o(temp_instr_c));
 endmodule
+
+
 

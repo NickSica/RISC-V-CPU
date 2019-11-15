@@ -19,23 +19,23 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module HazardDetection(input logic memRead, branchTaken,
-                       input logic[4:0] prevRt, rt, rs,
-                       output logic inhibitControl, flush, en_pc, en_IF);
+module HazardDetection(input logic r_mem_en_i, branch_taken_i,
+                       input logic[4:0] ex_rd_i, rs1_i, rs2_i,
+                       output logic inhibit_ctrl_o, flush_o, pc_en_o, if_en_o);
 
     always_comb begin
-        if(branchTaken) begin
-            en_pc = 1'b1;
-            en_IF = 1'b0;
-            flush = 1'b1;
-            inhibitControl = 1'b0;
+        if(branch_taken_i) begin
+            pc_en_o = 1'b1;
+            if_en_o = 1'b0;
+            flush_o = 1'b1;
+            inhibit_ctrl_o = 1'b0;
         end 
         
-        if( ((prevRt == rs) || (prevRt == rs)) && (memRead == 1'b1) ) begin
-            en_pc = 1'b0;
-            en_IF = 1'b0;
-            flush = 1'b0;
-            inhibitControl = 1'b1;
+        if(((ex_rd_i == rs1_i) || (ex_rd_i == rs2_i)) && (r_mem_en_i == 1'b1)) begin
+            pc_en_o = 1'b0;
+            if_en_o = 1'b0;
+            flush_o = 1'b0;
+            inhibit_ctrl_o = 1'b1;
         end
     end
 endmodule: HazardDetection

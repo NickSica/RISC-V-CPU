@@ -77,3 +77,9 @@ interface MEMtoWB(EXtoMEM.mem mem,
     modport w_reg(input regWrite, rd);
 endinterface: MEMtoWB
 `endif
+
+
+
+
+
+

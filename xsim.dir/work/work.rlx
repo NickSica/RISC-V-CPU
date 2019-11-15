@@ -1,0 +1,21 @@
+0.6
+2019.1
+May 24 2019
+14:51:52
+/home/nick/RISC-V-CPU/src/ALU.sv,1572478746,systemVerilog,,/home/nick/RISC-V-CPU/src/Cache.sv,,ALU,,,,,,,,
+/home/nick/RISC-V-CPU/src/ALUControl.sv,1572478737,systemVerilog,,/home/nick/RISC-V-CPU/src/ALU.sv,,ALUControl,,,,,,,,
+/home/nick/RISC-V-CPU/src/CPU.sv,1572645986,systemVerilog,,/home/nick/RISC-V-CPU/src/Execute.sv,/home/nick/RISC-V-CPU/src/Interfaces.sv;/home/nick/RISC-V-CPU/src/InstructionFetch.sv;/home/nick/RISC-V-CPU/src/InstructionDecode.sv;/home/nick/RISC-V-CPU/src/Execute.sv;/home/nick/RISC-V-CPU/src/Memory.sv;/home/nick/RISC-V-CPU/src/Writeback.sv,CPU,,,,,,,,
+/home/nick/RISC-V-CPU/src/Cache.sv,1572909747,systemVerilog,,/home/nick/RISC-V-CPU/src/Control.sv,,BranchCache,,,,,,,,
+/home/nick/RISC-V-CPU/src/Control.sv,1572642841,systemVerilog,,/home/nick/RISC-V-CPU/src/CPU.sv,/home/nick/RISC-V-CPU/src/Interfaces.sv,Control,,,,,,,,
+/home/nick/RISC-V-CPU/src/Execute.sv,1572642788,systemVerilog,,/home/nick/RISC-V-CPU/src/ForwardingUnit.sv,/home/nick/RISC-V-CPU/src/Interfaces.sv;/home/nick/RISC-V-CPU/src/ALU.sv;/home/nick/RISC-V-CPU/src/ALUControl.sv;/home/nick/RISC-V-CPU/src/ForwardingUnit.sv,Execute,,,,,,,,
+/home/nick/RISC-V-CPU/src/ForwardingUnit.sv,1572478857,systemVerilog,,/home/nick/RISC-V-CPU/src/HazardDetection.sv,/home/nick/RISC-V-CPU/src/Interfaces.sv,ForwardingUnit,,,,,,,,
+/home/nick/RISC-V-CPU/src/HazardDetection.sv,1572645891,systemVerilog,,/home/nick/RISC-V-CPU/src/ImmGen.sv,,HazardDetection,,,,,,,,
+/home/nick/RISC-V-CPU/src/ImmGen.sv,1572487255,systemVerilog,,/home/nick/RISC-V-CPU/src/InstructionCache.sv,,ImmGen,,,,,,,,
+/home/nick/RISC-V-CPU/src/InstructionCache.sv,1572039542,systemVerilog,,/home/nick/RISC-V-CPU/src/InstructionDecode.sv,,InstructionCache,,,,,,,,
+/home/nick/RISC-V-CPU/src/InstructionDecode.sv,1573772865,systemVerilog,,/home/nick/RISC-V-CPU/src/InstructionFetch.sv,/home/nick/RISC-V-CPU/src/Interfaces.sv;/home/nick/RISC-V-CPU/src/HazardDetection.sv;/home/nick/RISC-V-CPU/src/RegisterFile.sv;/home/nick/RISC-V-CPU/src/Control.sv,InstructionDecode,,,,,,,,
+/home/nick/RISC-V-CPU/src/InstructionFetch.sv,1572646011,systemVerilog,,/home/nick/RISC-V-CPU/src/Interfaces.sv,/home/nick/RISC-V-CPU/src/InstructionCache.sv,InstructionFetch,,,,,,,,
+/home/nick/RISC-V-CPU/src/Interfaces.sv,1573772389,systemVerilog,,/home/nick/RISC-V-CPU/src/Memory.sv,,EXtoMEM;IDtoEX;IFtoID;MEMtoWB,,,,,,,,
+/home/nick/RISC-V-CPU/src/Memory.sv,1572646281,systemVerilog,,/home/nick/RISC-V-CPU/src/RegisterFile.sv,,Memory,,,,,,,,
+/home/nick/RISC-V-CPU/src/RegisterFile.sv,1572039542,systemVerilog,,/home/nick/RISC-V-CPU/src/Writeback.sv,,RegisterFile,,,,,,,,
+/home/nick/RISC-V-CPU/src/Writeback.sv,1572039542,systemVerilog,,,,Writeback,,,,,,,,
+/home/nick/RISC-V-CPU/tb/CPU_tb.sv,1573774254,systemVerilog,,,,CPU_tb,,,,,,,,
