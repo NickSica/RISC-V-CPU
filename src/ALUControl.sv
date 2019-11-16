@@ -18,17 +18,18 @@
  * 
 *********************************************************************************/
 
-module ALUControl(input logic[1:0] aluOp,
-                  input logic[5:0] funct,
-                  output logic[3:0] ctrlSignal);
+module ALUControl(input logic [1:0] alu_op_i,
+		  input logic [2:0] funct3_i,
+                  input logic [6:0] funct7_i,
+                  output logic [3:0] ctrl_signal_o);
     
     always_comb begin
-        casez({aluOp, funct})
-            8'b00??????, 8'b10100000: ctrlSignal = 4'b0010; // Commands that use Add
-            8'b01??????, 8'b10100010: ctrlSignal = 4'b0110; // Commands that use Subtract
-            8'b10100100:              ctrlSignal = 4'b0000; // Commands that use AND
-            8'b10100101:              ctrlSignal = 4'b0001; // Commands that use OR
-            8'b10101010:              ctrlSignal = 4'b0111; // Commands that use Set if Less Than
+        casez({funct7_i, alu_op_i, funct3_i})
+          12'b???????_00_???, 12'b0000000_10_000: ctrl_signal_o = 4'b0010; // Commands that use Add
+          12'b???????_01_???, 12'b0100000_10_000: ctrl_signal_o = 4'b0110; // Commands that use Subtract
+	  12'b0000000_10_110                    : ctrl_signal_o = 4'b0001; // Commands that use OR
+          12'b0000000_10_111                    : ctrl_signal_o = 4'b0000; // Commands that use AND
+          //8'b10101010:              ctrl_signal_o = 4'b0111; // Commands that use Set if Less Than??
         endcase
     end
 endmodule

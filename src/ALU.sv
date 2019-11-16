@@ -17,23 +17,23 @@
  * 
 *********************************************************************************/
 
-module ALU(input logic[3:0] ctrlSignal, 
-           input logic[31:0] op1, op2, 
-           output logic[31:0] result);
+module ALU(input logic[3:0] ctrl_signal_i, 
+           input logic[63:0] op1_i, op2_i,
+           output logic[63:0] alu_result_o);
     
     always_comb begin
-        case(ctrlSignal)
-            4'b0000: result = op1 & op2;                                         // And
-            4'b0001: result = op1 | op2;                                         // Or
-            4'b0010: result = 32'(op1 + op2);                                    // Addition
-            4'b0110: result = 32'(op1 - op2);                                    // Subtraction
-            4'b0111: result = (signed'(op1) < signed'(op2)) ? 32'b1 : 32'b0;     // Set if Less than
-            //4'b0010: result = op1 << op2[4:0];                                   // Logic left shift
-            //4'b0011: result = (signed'(op1) < signed'(op2)) ? 32'b1 : 32'b0;     // Signed less than
-            //4'b0100: result = (unsigned'(op1) < unsigned'(op2)) ? 32'b1 : 32'b0; // Unsigned less than
-            //4'b0101: result = op1 ^ op2;                                         // Xor
-            //4'b0110: result = op1 >> op2[4:0];                                   // Logic right shift
-            //4'b0111: result = op1 >>> op2[4:0];                                  // Arithmetic right shift
+        case(ctrl_signal_i)
+            4'b0000: alu_result_o = op1_i & op2_i;                                         // And
+            4'b0001: alu_result_o = op1_i | op2_i;                                         // Or
+            4'b0010: alu_result_o = 64'(op1_i + op2_i);                                    // Addition
+            4'b0110: alu_result_o = 64'(op1_i - op2_i);                                    // Subtraction
+            //4'b0111: alu_result_o = (signed'(op1_i) < signed'(op2_i)) ? 32'b1 : 32'b0;     // Set if Less than
+            //4'b0010: alu_result_o = op1_i << op2_i[4:0];                                   // Logic left shift
+            //4'b0011: alu_result_o = (signed'(op1_i) < signed'(op2_i)) ? 32'b1 : 32'b0;     // Signed less than
+            //4'b0100: alu_result_o = (unsigned'(op1_i) < unsigned'(op2_i)) ? 32'b1 : 32'b0; // Unsigned less than
+            //4'b0101: alu_result_o = op1_i ^ op2_i;                                         // Xor
+            //4'b0110: alu_result_o = op1_i >> op2_i[4:0];                                   // Logic right shift
+            //4'b0111: alu_result_o = op1_i >>> op2_i[4:0];                                  // Arithmetic right shift
         endcase
     end 
 endmodule: ALU
