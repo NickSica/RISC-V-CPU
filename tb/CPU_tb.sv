@@ -30,51 +30,49 @@ module CPU_tb();
 				    32'b0000000_00100_00100_000_00010_0110011,    // ADD  $2 $4 $4		
 				    32'b0000000_00110_00110_000_00010_0110011     // ADD  $2 $6 $6	  	    
 				   };
-   logic [31:0]      cpu_in = 32'b0;
-   logic [31:0]      if_instr, id_instr, exe_instr, mem_instr, wb_instr;
-   logic       w_en = 1'b1;
-   logic       clk = 1'b0;
-   int 	       counter = 0;	       
-   always #100 clk = !clk;
+    logic [31:0]     wr_instr = 32'b0;
+    logic [31:0]     if_instr, id_instr, exe_instr, mem_instr, wb_instr;
+    logic 	     wr_instr_en = 1'b1;
+    logic 	     clk = 1'b0;
+    int 	     counter = 0;	       
+    always #100 clk = !clk;
 
-   CPU cpu(.clk, .w_en, .cpu_in);
+    CPU cpu(.clk_i(clk), .wr_instr_en_i(wr_instr_en), .wr_instr_i(wr_instr));
 
-   initial begin 
-      $monitor("IF Stage Instruction: %32b", cpu.instrFetch.instr);
-      $monitor("ID Stage Instruction: %32b", cpu.if_id.instr);
-      $monitor("EX Stage Instruction: %32b", cpu.id_ex.instr);
-      $monitor("EX Stage Result: %32b", cpu.exe.aluResult);
-      $monitor("MEM Stage Instruction: %32b", mem_instr);
-      $monitor("WB Stage Instruction: %32b", wb_instr);
-   end
+    initial begin 
+	$monitor("IF Stage Instruction: %32b", cpu.instrFetch.instr);
+	$monitor("ID Stage Instruction: %32b", cpu.if_id.instr);
+	$monitor("EX Stage Instruction: %32b", cpu.id_ex.instr);
+	$monitor("EX Stage Result: %32b", cpu.exe.aluResult);
+	$monitor("MEM Stage Instruction: %32b", mem_instr);
+	$monitor("WB Stage Instruction: %32b", wb_instr);
+    end
 
-   always_ff @(posedge clk) begin
-      int rs1 = mem_instr[19:15];
-      int rs2 = mem_instr[24:20];
-      int imm = mem_instr[31:20];
-      if(mem_instr[6:0] == 7'b0110011 && mem_instr[14:12] == 3'b000) begin
-	 int result = rs1 + rs2;
-	 $display("Add Instruction Actual Result: %0d. Expected Result: %0d", cpu.ex_mem.aluResult, result);
-      end 
-      else if(mem_instr[6:0] == 7'b0010011 && mem_instr[14:12] == 3'b000) begin
-	 int result = rs1 + imm;
-	 $display("Addi Instruction Actual Result: %0d. Expected Result: %0d", cpu.ex_mem.aluResult, result);
-      end
-   end
-   
-   always_ff @(posedge clk) begin
-      $display("");
-      cpu_in <= machineCode[counter];
-      if_instr  <= cpu.instrFetch.instr;
-      id_instr  <= cpu.if_id.instr;
-      exe_instr <= id_instr;
-      mem_instr <= exe_instr;
-      wb_instr <= mem_instr;
-      $display("Cycle %0d: Instruction: %32b", counter, cpu_in);
-      counter++;
-   end
-
-
+    always_ff @(posedge clk) begin
+	int rs1 = mem_instr[19:15];
+	int rs2 = mem_instr[24:20];
+	int imm = mem_instr[31:20];
+	if(mem_instr[6:0] == 7'b0110011 && mem_instr[14:12] == 3'b000) begin
+	    int result = rs1 + rs2;
+	    $display("Add Instruction Actual Result: %0d. Expected Result: %0d", cpu.ex_mem.aluResult, result);
+	end 
+	else if(mem_instr[6:0] == 7'b0010011 && mem_instr[14:12] == 3'b000) begin
+	    int result = rs1 + imm;
+	    $display("Addi Instruction Actual Result: %0d. Expected Result: %0d", cpu.ex_mem.aluResult, result);
+	end
+    end
+    
+    always_ff @(posedge clk) begin
+	$display("");
+	wr_instr <= machineCode[counter];
+	if_instr  <= cpu.instrFetch.instr;
+	id_instr  <= cpu.if_id.instr;
+	exe_instr <= id_instr;
+	mem_instr <= exe_instr;
+	wb_instr <= mem_instr;
+	$display("Cycle %0d: Instruction: %32b", counter, wr_instr);
+	counter++;
+    end
 endmodule
 
 

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Nov 18 23:19:09 2019
+# Process ID: 12040
+# Current directory: /home/nick/RISC-V-CPU
+# Command line: vivado -mode batch -source compile.tcl -tclargs ./V707/constraints.xdc verilog
+# Log file: /home/nick/RISC-V-CPU/vivado.log
+# Journal file: /home/nick/RISC-V-CPU/vivado.jou
+#-----------------------------------------------------------
+source compile.tcl

@@ -1,26 +1,23 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 06/05/2019 06:07:56 PM
-// Design Name: 
-// Module Name: InstructionCache
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************************
+ * Engineer: Nicholas Sica
+ * 
+ * Create Date: 06/05/2019 06:07:56 PM
+ * Design Name: 
+ * Module Name: InstructionCache
+ * Project Name: RISC-V-CPU
+ * Target Devices: 
+ * Tool Versions: 
+ * Description: 
+ * 
+ * Dependencies: 
+ * 
+ * Revision:
+ * Revision 0.01 - File Created
+ * Additional Comments:
+ * 
+*********************************************************************************/
 
-
-module InstructionCache #(parameter addr_wid = 32, instr_wid = 32, length = 100, bytes_per_word = instr_wid >> 3)
+module InstructionCache #(parameter addr_wid = 64, instr_wid = 32, length = 100, bytes_per_word = instr_wid >> 3)
                          (input logic wr_instr_en_i,
                           input logic [instr_wid-1:0] wr_instr_i,
                           input logic [addr_wid-1:0]  addr_i, 
@@ -32,10 +29,10 @@ module InstructionCache #(parameter addr_wid = 32, instr_wid = 32, length = 100,
     always_comb begin
         if(wr_instr_en_i == 1'b1) begin
             cache_c[r_addr_c] = wr_instr_i;
-            r_addr_c += 32'b100;
-        end
-        
-        wr_instr_i <= cache_c[addr_i];
+            r_addr_c += 64'b100;
+	end
+	    
+        instr_o = cache_c[addr_i];
     end
 endmodule
 

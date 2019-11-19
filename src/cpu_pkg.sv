@@ -1,5 +1,5 @@
 package cpu_pkg;
-    struct {
+    typedef struct {
 	logic [3:0] mem_write;
 	logic [1:0] alu_op;
 	logic 	    beq;

@@ -1,33 +1,57 @@
-# Step 1: Define the output directory area
+#-------------------------------------------------------------------------
+# reportCriticalPaths
+#-------------------------------------------------------------------------
+# This function generates a CSV file that provides a summery of the first
+# 50 violations for both Setup and Hold analysis. So a maximum number of
+# 100 paths are reported.
+#-------------------------------------------------------------------------
+proc reportCriticalPaths { fileName } {
+    # Open the specified output file in write mode
+    set FH [ open $fileName w ]
+
+    # Write the current date and CSV format to a file header
+    puts $FH "#\n# File created on [ clock format [ clock seconds ] ] \n#\n"
+    puts $FH "Startpoint,Endpoint,DelayType,Slack,#Levels,#LUTs"
+
+    # Iterate through both Min and Max delay types
+    foreach delayType {max min} {
+    	# Collect details from the 50 worst timing paths for the current analysis
+        # (max = setup/recovery, min = hold/removal)
+        # The $path variable contains a Timing Path object
+        foreach path [get_timing_paths -delay_type $delayType -max_paths 50 -nworst 1] {
+            # Get the LUT cells of the timing paths
+            set luts [get_cells -filter {REF_NAME =~ LUT*} -of_object $path]
+
+	    # Get the startpoint of the Timing Path object
+	    set startpoint [get_property STARTPOINT_PIN $path]
+	    # Get the endpoint of the Timing Path object	
+   	    set endpoint [get_property ENDPOINT_PIN $path]
+	    # Get the slack on the Timing Path object
+	    set slack [get_property SLACK $path]
+	    # Get the number of logic levels between startpoint and endpoint
+	    set levels [get_property LOGIC_LEVELS $path]
+
+	    # Save the collected path details to the CSV file
+	    puts $FH "$startpoint,$endpoint,$delayType,$slack,$levels,[llength $luts]"
+        }
+    }
+    # Close the output file
+    close $FH
+    puts "CSV file $fileName has been created.\n"
+    return 0
+}; # end reportCriticalPaths 
+
+#Step 1: Define the output directory area
 set partNum xc7a100tcsg324-1
 set outputDir ./build
 set topName CPU
 file mkdir $outputDir
-set arg_len [ llength $argv ]
-
 
 # Step 2: Setup design sources and constraints
-if {$arg_len == 0} {
-    read_verilog [ glob ./src/*.sv ]
-    read_xdc ./constraints.xdc
-} elseif {$arg_len == 1} {
-    read_xdc [lindex $argv 0]
-} elseif {$arg_len == 2} {
-    set lang [lindex $argv 1]
-    set constr [lindex $argv 0]
-    if {$lang == "vhdl"} {
-        read_vhdl [ glob ./src/*.vhd ]
-	read_xdc $constr
-    } elseif {$lang == "verilog"} {
-        read_verilog -sv [ glob -directory ./src *.sv ]
-	read_xdc $constr
-    } elseif {$lang == "both"} {
-	read_verilog -sv [ glob ./src/*.sv ]
-	read_vhdl [ glob ./src/*.vhd ]
-	read_xdc $contr
-    }
-
-}
+set lang [lindex $argv 1]
+set constr [lindex $argv 0]
+read_verilog -sv [ glob -directory ./src *.sv ]
+read_xdc $constr
 
 # Step 3: Run synthesis, write design checkpoint, report timing, and utilization estimates
 synth_design -top $topName -part $partNum
@@ -64,45 +88,4 @@ write_verilog -sv -force $outputDir/cpu_impl_netlist.sv -mode timesim -sdf_anno 
 write_bitstream -force $outputDir/$topName.bit
 
 
-#-------------------------------------------------------------------------
-# reportCriticalPaths
-#-------------------------------------------------------------------------
-# This function generates a CSV file that provides a summery of the first
-# 50 violations for both Setup and Hold analysis. So a maximum number of
-# 100 paths are reported.
-#-------------------------------------------------------------------------
-proc reportCriticalPaths { fileName } {
-    # Open the specified output file in write mode
-    set FH [open $fileName w]
 
-    # Write the current date and CSV format to a file header
-    puts $FH "#\n# File created on [clock format [clock seconds]] \n#\n"
-    puts $FH "Startpoint,Endpoint,DelayType,Slack,#Levels,#LUTs"
-
-    # Iterate through both Min and Max delay types
-    foreach delayType {max min}
-    	# Collect details from the 50 worst timing paths for the current analysis
-        # (max = setup/recovery, min = hold/removal)
-        # The $path variable contains a Timing Path object
-        foreach path [get_timing_paths -delay_type $delayType -max_paths 50 -nworst 1] {
-            # Get the LUT cells of the timing paths
-            set luts [get_cells -filter {REF_NAME =~ LUT*} -of_object $path]
-
-	    # Get the startpoint of the Timing Path object
-	    set startpoint [get_property STARTPOINT_PIN $path]
-	    # Get the endpoint of the Timing Path object	
-   	    set endpoint [get_property ENDPOINT_PIN $path]
-	    # Get the slack on the Timing Path object
-	    set slack [get_property SLACK $path]
-	    # Get the number of logic levels between startpoint and endpoint
-	    set levels [get_property LOGIC_LEVELS $path]
-
-	    # Save the collected path details to the CSV file
-	    puts $FH "$startpoint,$endpoint,$delayType,$slack,$levels,[llength $luts]"
-        }
-    }
-    # Close the output file
-    close $FH
-    puts "CSV file $fileName has been created.\n"
-    return 0
-}; # end reportCriticalPaths
