@@ -33,7 +33,7 @@ module InstructionDecode(input logic         clk_i, wr_reg_en_i,
     logic [31:0] instr_r;
     logic [4:0]  ex_rd_r, wb_rd_r, rt_next;
     logic 	 inhibit_ctrl = 1'b0;
-    logic 	 wr_reg_en_r;
+    logic 	 wr_reg_en_r, is_branch;
     
     HazardDetection hazard_detection(.r_mem_en_i(ctrl_signals_o.mem_read), .branch_taken_i(pc_src_o), .ex_rd_i(ex_rd_r), .rs1_i(instr_r[19:15]), .rs2_i(instr_r[24:20]), 
 				     .inhibit_ctrl_o(inhibit_ctrl), .flush_o, .pc_en_o, .if_en_o);
@@ -42,13 +42,23 @@ module InstructionDecode(input logic         clk_i, wr_reg_en_i,
                           .rs1_data_o, .rs2_data_o);
                          
     Control ctrl(.inhibit_control_i(inhibit_ctrl), .instr_i(instr_r), 
-                 .ctrl_signals_o);
+                 .is_branch_o(is_branch), .ctrl_signals_o);
     
     ImmGen imm_gen(.instr_i(instr_r),
 		   .imm_o);
      
     always_comb begin
-        pc_src_o = ((rs1_data_o == rs2_data_o) & ctrl_signals_o.beq) | ((rs1_data_o != rs2_data_o) & ctrl_signals_o.bne);  // Branch logic
+	if(is_branch) begin // Move to use Execute ALU if space is needed on FPGA
+            pc_src_o = ((rs1_data_o == rs2_data_o) && (funct3_o == 3'b000)) | // BEQ
+		       ((rs1_data_o != rs2_data_o) && (funct3_o == 3'b001)) | // BNE
+		       ((rs1_data_o <  rs2_data_o) && (funct3_o == 3'b100)) | // BLT
+		       ((rs1_data_o >= rs2_data_o) && (funct3_o == 3'b101)) | // BGE
+		       ((unsigned'(rs1_data_o) <  unsigned'(rs2_data_o)) && (funct3_o == 3'b110)) | // BLTU
+		       ((unsigned'(rs1_data_o) >= unsigned'(rs2_data_o)) && (funct3_o == 3'b111));  // BGEU
+	end else begin
+	    pc_src_o = 1'b0;
+	end
+	    
 	funct3_o = instr_r[14:12];
 	funct7_o = instr_r[31:25];
 	rs1_o = instr_r[19:15];

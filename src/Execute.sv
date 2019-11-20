@@ -18,15 +18,17 @@
 *********************************************************************************/
 
 module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
-	       input logic [1:0]   alu_op_i,   
+	       input logic [1:0]   alu_op_i, 
 	       input logic [2:0]   funct3_i,
 	       input logic [4:0]   rs1_i, rs2_i, rd_i, mem_rd_i, wb_rd_i,
 	       input logic [6:0]   funct7_i,
-	       input logic [63:0]  ex_result_i, mem_result_i, imm_i, rs1_data_i, rs2_data_i,
+	       input logic [31:0]  imm_i,
+	       input logic [63:0]  ex_result_i, mem_result_i, rs1_data_i, rs2_data_i,
 	       output logic [4:0]  rd_o,
 	       output logic [63:0] wr_ram_data_o, alu_result_o);
     
-    logic [63:0] rs1_data, rs2_data, ex_result_r, mem_result_r, imm_r, rs1_data_r, rs2_data_r;
+    logic [63:0] rs1_data, rs2_data, ex_result_r, mem_result_r, rs1_data_r, rs2_data_r;
+    logic [31:0] imm_r;
     logic [6:0]  funct7_r;
     logic [4:0]  rs1_r, rs2_r, mem_rd_r, wb_rd_r;
     logic [3:0]  alu_ctrl_signal;
@@ -52,7 +54,7 @@ module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
         endcase 
        
         casez({fwd_rs2, alu_src_r})
-            3'b??1: rs2_data = imm_r;
+            3'b??1: rs2_data = 64'(imm_r);
             3'b000: rs2_data = rs2_data_r;
             3'b010: rs2_data = mem_result_r;
             3'b100: rs2_data = ex_result_r;

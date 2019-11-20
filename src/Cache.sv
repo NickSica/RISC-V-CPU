@@ -1,26 +1,23 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 06/27/2019 01:04:33 AM
-// Design Name: 
-// Module Name: Cache
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+/*********************************************************************************
+ * Engineer: Nicholas Sica
+ * 
+ * Create Date: 06/27/2019 01:04:33 AM
+ * Design Name: 
+ * Module Name: Cache
+ * Project Name: RISC-V-CPU
+ * Target Devices: 
+ * Tool Versions: 
+ * Description: 
+ * 
+ * Dependencies: 
+ * 
+ * Revision:
+ * Revision 0.01 - File Created
+ * Additional Comments:
+ * 
+*********************************************************************************/
 
-
-module BranchCache #(parameter cacheLength = 100, wordSize = 32)
+module Cache #(parameter cacheLength = 100, wordSize = 32)
                     (input logic branchTaken,
 		     input logic [31:0] currInstr, prevInstr,
 		     output logic      predictBranch);
