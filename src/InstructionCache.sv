@@ -32,7 +32,7 @@ module InstructionCache #(parameter addr_wid = 64, instr_wid = 32, length = 100,
             r_addr_c += 64'b100;
 	end
 	    
-        instr_o = cache_c[addr_i];
+        instr_o = { cache_c[addr_i+3], cache_c[addr_i+2], cache_c[addr_i+1], cache_c[addr_i] };
     end
 endmodule
 
