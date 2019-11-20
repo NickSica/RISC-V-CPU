@@ -19,7 +19,8 @@
 import cpu_pkg::control_signals;
 
 module CPU(input logic clk_i, rst_i, wr_instr_en_i,
-           input logic[31:0] wr_instr_i);
+           input logic[7:0] wr_instr_i, 
+	   output logic out_o);
     
     // IF Stage Signals
     logic [63:0] if_pc = 64'b0;
@@ -74,6 +75,10 @@ module CPU(input logic clk_i, rst_i, wr_instr_en_i,
     always_ff @(posedge clk_i) begin
 	wb_rd_r <= mem_rd;
 	wb_rd_data_r <= mem_rd_data;
+    end
+
+    always_comb begin
+	out_o = wb_rd_r | wb_rd_data_r;
     end
 
     // Passes the control signals forward

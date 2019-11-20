@@ -42,13 +42,13 @@ proc reportCriticalPaths { fileName } {
 }; # end reportCriticalPaths 
 
 #Step 1: Define the output directory area
-set partNum xc7a100tcsg324-1
+#set partNum xc7a100tcsg324-1
+set partNum xc7vx485tffg1761-2
 set outputDir ./build
 set topName CPU
 file mkdir $outputDir
 
 # Step 2: Setup design sources and constraints
-set lang [lindex $argv 1]
 set constr [lindex $argv 0]
 read_verilog -sv [ glob -directory ./src *.sv ]
 read_xdc $constr
@@ -65,12 +65,7 @@ reportCriticalPaths $outputDir/post_synth_critpath_report.csv
 opt_design
 reportCriticalPaths $outputDir/post_opt_critpath_report.csv
 place_design
-report_clock_utilization -file $outputDir/clock_util.rpt
-# Optionally run optimization if there are timing violations after the placement
-if{[ get_property SLACK [ get_timing_paths -max_paths 1 -nworst 1 -setup ] ] < 0} {
-    puts "Found setup timing violations => running physical optimization"
-    phys_opt_design
-}
+phys_opt_design
 write_checkpoint -force $outputDir/post_place.dcp
 report_utilization -file $outputDir/post_place_util.rpt
 report_timing_summary -file $outputDir/post_place_timing_summary.rpt
@@ -78,11 +73,14 @@ report_timing_summary -file $outputDir/post_place_timing_summary.rpt
 # Step 5: Run the router, write the post-route design checkpoint, report the routing status, report timing, power, and DRC, and finally save the Verilog netlist
 route_design -directive Explore
 write_checkpoint -force $outputDir/post_route.dcp
-report_route_status -file $outputDir/post_route_status.rpt
-report_timing_summary -file $outputDir/post_route_timing_summary.rpt
+report_timing_summary -file $outputDir/post_route_timing_summary.rpt 
+report_timing -sort_by group -max_paths 100 -path_type summary -file $outputDir/post_route_timing.rpt
+report_clock_utilization -file $outputDir/clock_util.rpt
+report_utilization -file $outputDir/post_route_util.rpt
 report_power -file $outputDir/post_route_power.rpt
 report_drc -file $outputDir/post_imp_drc.rpt
-write_verilog -sv -force $outputDir/cpu_impl_netlist.sv -mode timesim -sdf_anno true
+write_verilog -force $outputDir/cpu_impl_netlist.v
+write_xdc -no_fixed_only -force $outputDir/top_impl.xdc
 
 # Step 6: Generate a bitstream
 write_bitstream -force $outputDir/$topName.bit

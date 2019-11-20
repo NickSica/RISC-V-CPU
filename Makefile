@@ -25,7 +25,7 @@ VLOG_SRC_FILES = src/cpu_pkg.sv \
 .PHONY: build clean
 
 build:
-	$(vivado) $(script) -tclargs $(constr) verilog
+	$(vivado) $(script) -tclargs $(constr)
 
 test:
 	xvlog --nolog --sv $(VLOG_SRC_FILES)
@@ -37,5 +37,5 @@ clean:
 	-rm -r build
 	-rm vivado*
 	-rm webtalk*
-	-rm -r x*
+	-rm x*
 

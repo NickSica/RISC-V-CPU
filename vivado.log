@@ -1,0 +1,1432 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Wed Nov 20 00:12:17 2019
+# Process ID: 53299
+# Current directory: /home/nick/RISC-V-CPU
+# Command line: vivado -mode batch -source compile.tcl -tclargs ./V707/constraints.xdc
+# Log file: /home/nick/RISC-V-CPU/vivado.log
+# Journal file: /home/nick/RISC-V-CPU/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /home/nick/.Xilinx/Vivado/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/home/nick/.Xilinx/Vivado/init.tcl'
+source compile.tcl
+# proc reportCriticalPaths { fileName } {
+#     # Open the specified output file in write mode
+#     set FH [ open $fileName w ]
+# 
+#     # Write the current date and CSV format to a file header
+#     puts $FH "#\n# File created on [ clock format [ clock seconds ] ] \n#\n"
+#     puts $FH "Startpoint,Endpoint,DelayType,Slack,#Levels,#LUTs"
+# 
+#     # Iterate through both Min and Max delay types
+#     foreach delayType {max min} {
+#     	# Collect details from the 50 worst timing paths for the current analysis
+#         # (max = setup/recovery, min = hold/removal)
+#         # The $path variable contains a Timing Path object
+#         foreach path [get_timing_paths -delay_type $delayType -max_paths 50 -nworst 1] {
+#             # Get the LUT cells of the timing paths
+#             set luts [get_cells -filter {REF_NAME =~ LUT*} -of_object $path]
+# 
+# 	    # Get the startpoint of the Timing Path object
+# 	    set startpoint [get_property STARTPOINT_PIN $path]
+# 	    # Get the endpoint of the Timing Path object	
+#    	    set endpoint [get_property ENDPOINT_PIN $path]
+# 	    # Get the slack on the Timing Path object
+# 	    set slack [get_property SLACK $path]
+# 	    # Get the number of logic levels between startpoint and endpoint
+# 	    set levels [get_property LOGIC_LEVELS $path]
+# 
+# 	    # Save the collected path details to the CSV file
+# 	    puts $FH "$startpoint,$endpoint,$delayType,$slack,$levels,[llength $luts]"
+#         }
+#     }
+#     # Close the output file
+#     close $FH
+#     puts "CSV file $fileName has been created.\n"
+#     return 0
+# };
+# set partNum xc7vx485tffg1761-2
+# set outputDir ./build
+# set topName CPU
+# file mkdir $outputDir
+# set constr [lindex $argv 0]
+# read_verilog -sv [ glob -directory ./src *.sv ]
+# read_xdc $constr
+# synth_design -top $topName -part $partNum
+Command: synth_design -top CPU -part xc7vx485tffg1761-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7vx485t'
+INFO: [Device 21-403] Loading part xc7vx485tffg1761-2
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 53314 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2072.883 ; gain = 201.688 ; free physical = 4670 ; free virtual = 15382
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'CPU' [/home/nick/RISC-V-CPU/src/CPU.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'InstructionFetch' [/home/nick/RISC-V-CPU/src/InstructionFetch.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'InstructionCache' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:20]
+	Parameter addr_wid bound to: 64 - type: integer 
+	Parameter instr_wid bound to: 32 - type: integer 
+	Parameter length bound to: 100 - type: integer 
+	Parameter bytes_per_word bound to: 4 - type: integer 
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[99]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[98]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[97]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[96]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[95]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[94]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[93]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[92]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[91]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[90]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[89]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[88]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[87]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[86]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[85]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[84]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[83]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[82]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[81]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[80]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[79]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[78]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[77]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[76]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[75]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[74]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[73]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[72]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[71]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[70]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[69]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[68]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[67]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[66]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[65]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[64]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[63]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[62]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[61]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[60]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[59]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[58]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[57]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[56]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[55]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[54]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[53]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[52]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[51]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[50]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[49]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[48]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[47]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[46]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[45]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[44]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[43]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[42]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[41]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[40]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[39]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[38]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[37]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[36]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[35]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[34]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[33]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[32]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[31]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[30]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[29]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[28]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[27]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[26]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[25]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[24]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[23]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[22]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[21]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[20]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[19]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[18]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[17]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[16]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[15]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[14]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[13]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[12]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[11]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[10]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[9]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[8]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[7]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[6]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[5]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[4]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[3]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[2]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[1]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-87] always_comb on 'cache_c_reg[0]' did not result in combinational logic [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+INFO: [Common 17-14] Message 'Synth 8-87' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6155] done synthesizing module 'InstructionCache' (1#1) [/home/nick/RISC-V-CPU/src/InstructionCache.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'InstructionFetch' (2#1) [/home/nick/RISC-V-CPU/src/InstructionFetch.sv:20]
+CRITICAL WARNING: [Synth 8-5972] variable 'if_pc' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/CPU.sv:59]
+CRITICAL WARNING: [Synth 8-5972] variable 'if_instr' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/CPU.sv:59]
+INFO: [Synth 8-6157] synthesizing module 'InstructionDecode' [/home/nick/RISC-V-CPU/src/InstructionDecode.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'HazardDetection' [/home/nick/RISC-V-CPU/src/HazardDetection.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'HazardDetection' (3#1) [/home/nick/RISC-V-CPU/src/HazardDetection.sv:20]
+CRITICAL WARNING: [Synth 8-5972] variable 'inhibit_ctrl' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/InstructionDecode.sv:39]
+INFO: [Synth 8-6157] synthesizing module 'RegisterFile' [/home/nick/RISC-V-CPU/src/RegisterFile.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'RegisterFile' (4#1) [/home/nick/RISC-V-CPU/src/RegisterFile.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'Control' [/home/nick/RISC-V-CPU/src/Control.sv:21]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/Control.sv:28]
+INFO: [Synth 8-6155] done synthesizing module 'Control' (5#1) [/home/nick/RISC-V-CPU/src/Control.sv:21]
+INFO: [Synth 8-6157] synthesizing module 'ImmGen' [/home/nick/RISC-V-CPU/src/ImmGen.sv:20]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ImmGen.sv:28]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ImmGen.sv:33]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ImmGen.sv:38]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ImmGen.sv:45]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ImmGen.sv:50]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ImmGen.sv:56]
+INFO: [Synth 8-6155] done synthesizing module 'ImmGen' (6#1) [/home/nick/RISC-V-CPU/src/ImmGen.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'InstructionDecode' (7#1) [/home/nick/RISC-V-CPU/src/InstructionDecode.sv:20]
+CRITICAL WARNING: [Synth 8-5972] variable 'if_pc_src' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/CPU.sv:62]
+CRITICAL WARNING: [Synth 8-5972] variable 'if_flush' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/CPU.sv:62]
+CRITICAL WARNING: [Synth 8-5972] variable 'if_pc_en' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/CPU.sv:62]
+CRITICAL WARNING: [Synth 8-5972] variable 'if_en' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/CPU.sv:62]
+INFO: [Synth 8-6157] synthesizing module 'Execute' [/home/nick/RISC-V-CPU/src/Execute.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'ForwardingUnit' [/home/nick/RISC-V-CPU/src/ForwardingUnit.sv:20]
+INFO: [Synth 8-6155] done synthesizing module 'ForwardingUnit' (8#1) [/home/nick/RISC-V-CPU/src/ForwardingUnit.sv:20]
+CRITICAL WARNING: [Synth 8-5972] variable 'fwd_rs2' cannot be written by both continuous and procedural assignments [/home/nick/RISC-V-CPU/src/Execute.sv:41]
+INFO: [Synth 8-6157] synthesizing module 'ALUControl' [/home/nick/RISC-V-CPU/src/ALUControl.sv:20]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ALUControl.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'ALUControl' (9#1) [/home/nick/RISC-V-CPU/src/ALUControl.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'ALU' [/home/nick/RISC-V-CPU/src/ALU.sv:20]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/ALU.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'ALU' (10#1) [/home/nick/RISC-V-CPU/src/ALU.sv:20]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/Execute.sv:50]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/nick/RISC-V-CPU/src/Execute.sv:56]
+INFO: [Synth 8-6155] done synthesizing module 'Execute' (11#1) [/home/nick/RISC-V-CPU/src/Execute.sv:20]
+INFO: [Synth 8-6157] synthesizing module 'Memory' [/home/nick/RISC-V-CPU/src/Memory.sv:22]
+WARNING: [Synth 8-6014] Unused sequential element mem_addr_s_reg was removed.  [/home/nick/RISC-V-CPU/src/Memory.sv:29]
+WARNING: [Synth 8-6014] Unused sequential element wr_data_s_reg was removed.  [/home/nick/RISC-V-CPU/src/Memory.sv:30]
+WARNING: [Synth 8-3848] Net r_data in module/entity Memory does not have driver. [/home/nick/RISC-V-CPU/src/Memory.sv:26]
+INFO: [Synth 8-6155] done synthesizing module 'Memory' (12#1) [/home/nick/RISC-V-CPU/src/Memory.sv:22]
+WARNING: [Synth 8-6014] Unused sequential element ex_reg_dst_r_reg was removed.  [/home/nick/RISC-V-CPU/src/CPU.sv:86]
+WARNING: [Synth 8-6014] Unused sequential element ex_mem_read_r_reg was removed.  [/home/nick/RISC-V-CPU/src/CPU.sv:91]
+WARNING: [Synth 8-6014] Unused sequential element mem_reg_dst_r_reg was removed.  [/home/nick/RISC-V-CPU/src/CPU.sv:94]
+WARNING: [Synth 8-6014] Unused sequential element mem_mem_read_r_reg was removed.  [/home/nick/RISC-V-CPU/src/CPU.sv:97]
+WARNING: [Synth 8-3848] Net mem_rd in module/entity CPU does not have driver. [/home/nick/RISC-V-CPU/src/CPU.sv:50]
+INFO: [Synth 8-6155] done synthesizing module 'CPU' (13#1) [/home/nick/RISC-V-CPU/src/CPU.sv:21]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_write_i
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[63]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[62]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[61]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[60]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[59]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[58]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[57]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[56]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[55]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[54]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[53]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[52]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[51]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[50]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[49]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[48]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[47]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[46]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[45]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[44]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[43]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[42]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[41]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[40]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[39]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[38]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[37]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[36]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[35]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[34]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[33]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[32]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[31]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[30]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[29]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[28]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[27]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[26]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[25]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[24]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[23]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[22]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[21]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[20]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[19]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[18]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[17]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[16]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[15]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[14]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[13]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[12]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[11]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[10]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[9]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[8]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[7]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[6]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[5]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[4]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[3]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[2]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[1]
+WARNING: [Synth 8-3331] design Memory has unconnected port mem_addr_i[0]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[63]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[62]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[61]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[60]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[59]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[58]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[57]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[56]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[55]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[54]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[53]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[52]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[51]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[50]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[49]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[48]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[47]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[46]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[45]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[44]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[43]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[42]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[41]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[40]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[39]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[38]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[37]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[36]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[35]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[34]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[33]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[32]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[31]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[30]
+WARNING: [Synth 8-3331] design Memory has unconnected port wr_data_i[29]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2134.633 ; gain = 263.438 ; free physical = 4670 ; free virtual = 15407
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2140.570 ; gain = 269.375 ; free physical = 4670 ; free virtual = 15407
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2140.570 ; gain = 269.375 ; free physical = 4670 ; free virtual = 15407
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2140.570 ; gain = 0.000 ; free physical = 4662 ; free virtual = 15397
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/nick/RISC-V-CPU/V707/constraints.xdc]
+Finished Parsing XDC File [/home/nick/RISC-V-CPU/V707/constraints.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/nick/RISC-V-CPU/V707/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/CPU_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/CPU_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2296.148 ; gain = 0.000 ; free physical = 4550 ; free virtual = 15285
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2296.148 ; gain = 0.000 ; free physical = 4550 ; free virtual = 15285
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4664 ; free virtual = 15376
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7vx485tffg1761-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4664 ; free virtual = 15376
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4642 ; free virtual = 15376
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/nick/RISC-V-CPU/src/ALU.sv:25]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[99]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[98]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[97]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[96]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[95]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[94]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[93]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[92]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[91]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[90]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[89]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[88]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[87]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[86]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[85]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[84]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[83]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[82]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[81]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[80]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[79]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[78]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[77]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[76]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[75]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[74]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[73]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[72]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[71]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[70]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[69]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[68]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[67]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[66]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[65]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[64]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[63]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[62]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[61]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[60]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[59]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[58]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[57]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[56]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[55]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[54]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[53]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[52]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[51]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[50]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[49]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[48]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[47]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[46]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[45]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[44]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[43]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[42]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[41]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[40]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[39]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[38]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[37]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[36]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[35]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[34]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[33]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[32]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[31]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[30]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[29]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[28]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[27]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[26]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[25]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[24]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[23]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[22]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[21]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[20]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[19]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[18]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[17]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[16]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[15]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[14]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[13]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[12]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[11]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[10]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[9]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[8]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[7]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[6]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[5]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[4]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[3]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[2]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[1]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+WARNING: [Synth 8-327] inferring latch for variable 'cache_c_reg[0]' [/home/nick/RISC-V-CPU/src/InstructionCache.sv:31]
+INFO: [Common 17-14] Message 'Synth 8-327' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4605 ; free virtual = 15366
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 3     
+	   3 Input     64 Bit       Adders := 1     
++---Registers : 
+	               64 Bit    Registers := 41    
+	               32 Bit    Registers := 2     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 8     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 12    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 7     
+	   5 Input     64 Bit        Muxes := 3     
+	   4 Input     64 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 1     
+	   3 Input     12 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 1     
+	   3 Input      6 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 2     
+	   5 Input      4 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 42    
+	   6 Input      1 Bit        Muxes := 6     
+	   4 Input      1 Bit        Muxes := 3     
+	   5 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module CPU 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
+Module InstructionCache 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 7     
+Module InstructionFetch 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 1     
++---Registers : 
+	               64 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module HazardDetection 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module RegisterFile 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 32    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 32    
+Module Control 
+Detailed RTL Component Info : 
++---Muxes : 
+	   6 Input      4 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 6     
+Module ImmGen 
+Detailed RTL Component Info : 
++---Muxes : 
+	   3 Input     12 Bit        Muxes := 2     
+	   3 Input      8 Bit        Muxes := 1     
+	   3 Input      6 Bit        Muxes := 1     
+	   4 Input      4 Bit        Muxes := 2     
+	   4 Input      2 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 2     
+	   5 Input      1 Bit        Muxes := 2     
+Module InstructionDecode 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 1     
++---Registers : 
+	               64 Bit    Registers := 2     
+	               32 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
+Module ForwardingUnit 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 2     
+Module ALUControl 
+Detailed RTL Component Info : 
++---Muxes : 
+	   5 Input      4 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+Module ALU 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     64 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 1     
+	   5 Input     64 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+Module Execute 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 4     
+	               32 Bit    Registers := 1     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 5     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   5 Input     64 Bit        Muxes := 1     
+	   4 Input     64 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+Module Memory 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 2800 (col length:140)
+BRAMs: 2060 (col length: RAMB18 140 RAMB36 70)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-4471] merging register 'ex_stage/wb_reg_write_r_reg' into 'id_stage/wr_reg_en_r_reg' [/home/nick/RISC-V-CPU/src/Execute.sv:40]
+INFO: [Synth 8-4471] merging register 'id_stage/wb_rd_r_reg[4:0]' into 'ex_stage/wb_rd_r_reg[4:0]' [/home/nick/RISC-V-CPU/src/InstructionDecode.sv:41]
+INFO: [Synth 8-4471] merging register 'wb_rd_data_r_reg[63:0]' into 'ex_stage/mem_result_r_reg[63:0]' [/home/nick/RISC-V-CPU/src/CPU.sv:61]
+INFO: [Synth 8-4471] merging register 'ex_stage/mem_reg_write_r_reg' into 'wb_reg_write_r_reg' [/home/nick/RISC-V-CPU/src/Execute.sv:40]
+INFO: [Synth 8-5546] ROM "id_stage/imm_gen/imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "id_stage/imm_gen/imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "id_stage/imm_gen/imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "id_stage/imm_gen/imm_o" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[0]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[1]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[2]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[3]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[4]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[5]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[6]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[7]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[8]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[9]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[10]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[11]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[12]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[13]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[14]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[15]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[16]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[17]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[18]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[19]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[20]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[21]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[22]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[23]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[24]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[25]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[26]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[27]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[28]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[29]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[30]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[31]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[32]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[33]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[34]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[35]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[36]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[37]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[38]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[39]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[40]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[41]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[42]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[43]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[44]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[45]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[46]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[47]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[48]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[49]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[50]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[51]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[52]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[53]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[54]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[55]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[56]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[57]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[58]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[59]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[60]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[61]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[62]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/pc_r_reg[63]' (FD) to 'id_stage/instr_r_reg[1]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[1]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[8]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[9]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[10]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[11]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[14]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[15]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[17]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[18]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[19]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[25]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[26]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[27]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[30]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[31]' (FD) to 'id_stage/instr_r_reg[0]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[0]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[7]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\wb_rd_r_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\wb_rd_r_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\wb_rd_r_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\wb_rd_r_reg[2] )
+INFO: [Synth 8-3886] merging instance 'ex_stage/wb_rd_r_reg[3]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'ex_stage/wb_rd_r_reg[4]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'ex_stage/wb_rd_r_reg[1]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'ex_stage/wb_rd_r_reg[2]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[23]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[24]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[22]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[21]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[12]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[13]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[16]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[28]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[29]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[20]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[5]' (FD) to 'id_stage/instr_r_reg[4]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[6]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3886] merging instance 'id_stage/instr_r_reg[3]' (FD) to 'id_stage/instr_r_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\id_stage/instr_r_reg[2] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\id_stage/instr_r_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\wb_rd_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\id_stage/ctrl/ctrl_signals_o_reg[reg_write] )
+INFO: [Synth 8-3886] merging instance 'ex_stage/funct3_r_reg[1]' (FD) to 'ex_reg_write_r_reg'
+INFO: [Synth 8-3886] merging instance 'ex_stage/funct3_r_reg[0]' (FD) to 'ex_reg_write_r_reg'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\id_stage/ctrl/ctrl_signals_o_reg[alu_src] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\id_stage/imm_gen/imm_o_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\id_stage/reg_file /\registers_r_reg[2][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\id_stage/ctrl/ctrl_signals_o_reg[mem_to_reg] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ex_stage/rs2_data_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (ex_reg_write_r_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ex_stage/rs2_data_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (ex_reg_write_r_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ex_stage/rs2_data_r_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ex_stage/rs2_data_r_reg[0] )
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][31]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][30]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][29]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][28]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][27]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][26]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][25]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][24]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][23]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][22]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][21]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][20]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][19]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][18]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][17]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][16]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][15]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][14]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][13]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][12]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][11]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][10]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][9]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][8]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][7]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][6]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][5]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][4]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][3]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][2]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][1]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[99][0]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][31]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][30]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][29]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][28]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][27]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][26]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][25]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][24]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][23]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][22]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][21]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][20]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][19]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][18]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][17]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][16]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][15]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][14]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][13]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][12]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][11]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][10]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][9]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][8]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][7]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][6]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][5]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][4]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][3]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][2]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][1]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[98][0]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][31]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][30]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][29]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][28]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][27]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][26]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][25]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][24]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][23]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][22]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][21]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][20]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][19]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][18]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][17]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][16]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][15]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][14]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][13]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][12]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][11]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][10]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][9]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][8]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][7]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][6]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][5]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][4]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][3]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][2]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][1]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[97][0]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[96][31]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[96][30]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[96][29]) is unused and will be removed from module InstructionCache.
+WARNING: [Synth 8-3332] Sequential element (cache_c_reg[96][28]) is unused and will be removed from module InstructionCache.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4625 ; free virtual = 15370
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:30 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4509 ; free virtual = 15252
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:30 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4509 ; free virtual = 15252
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:30 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4505 ; free virtual = 15250
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |OBUF |     1|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |     1|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.148 ; gain = 424.953 ; free physical = 4529 ; free virtual = 15250
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3773 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 2296.148 ; gain = 269.375 ; free physical = 4555 ; free virtual = 15300
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:33 . Memory (MB): peak = 2296.156 ; gain = 424.953 ; free physical = 4555 ; free virtual = 15300
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2296.156 ; gain = 0.000 ; free physical = 4625 ; free virtual = 15369
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/nick/RISC-V-CPU/V707/constraints.xdc]
+Finished Parsing XDC File [/home/nick/RISC-V-CPU/V707/constraints.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2296.156 ; gain = 0.000 ; free physical = 4555 ; free virtual = 15300
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+183 Infos, 408 Warnings, 8 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:43 ; elapsed = 00:01:00 . Memory (MB): peak = 2296.156 ; gain = 832.152 ; free physical = 4664 ; free virtual = 15433
+# write_checkpoint -force $outputDir/post_synth.dcp
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2296.156 ; gain = 0.000 ; free physical = 4664 ; free virtual = 15433
+Writing placer database...
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.07 . Memory (MB): peak = 2304.152 ; gain = 0.000 ; free physical = 4664 ; free virtual = 15436
+INFO: [Common 17-1381] The checkpoint '/home/nick/RISC-V-CPU/build/post_synth.dcp' has been generated.
+# report_timing_summary -file $outputDir/post_synth_timing_summary.rpt
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 4 CPUs
+report_timing_summary: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2545.012 ; gain = 240.859 ; free physical = 4316 ; free virtual = 15036
+# report_utilization -file $outputDir/post_synth_util.rpt
+# reportCriticalPaths $outputDir/post_synth_critpath_report.csv
+WARNING: [Vivado 12-975] No timing paths matched 'get_timing_paths -delay_type max -max_paths 50 -nworst 1'.
+WARNING: [Vivado 12-975] No timing paths matched 'get_timing_paths -delay_type min -max_paths 50 -nworst 1'.
+CSV file ./build/post_synth_critpath_report.csv has been created.
+
+# opt_design
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7vx485t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.14 ; elapsed = 00:00:00.24 . Memory (MB): peak = 2582.965 ; gain = 37.953 ; free physical = 4263 ; free virtual = 15032
+
+Starting Cache Timing Information Task
+Ending Cache Timing Information Task | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2582.965 ; gain = 0.000 ; free physical = 4263 ; free virtual = 15032
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 0 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 2 Constant propagation | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+
+Phase 4 BUFG optimization
+INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common MMCM/DPLL/XPLL driver.
+INFO: [Opt 31-1112] Starts optimizing BUFG(s) with a common driver.
+INFO: [Opt 31-1092] Phase BUFG optimization transformed 0 BUFG(s) to MBUFG(s).
+Phase 4 BUFG optimization | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |               0  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               0  |               0  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+Ending Logic Optimization Task | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4154 ; free virtual = 14899
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4153 ; free virtual = 14898
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4153 ; free virtual = 14898
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4153 ; free virtual = 14898
+Ending Netlist Obfuscation Task | Checksum: 151b49972
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2712.934 ; gain = 0.000 ; free physical = 4153 ; free virtual = 14898
+INFO: [Common 17-83] Releasing license: Implementation
+19 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+# reportCriticalPaths $outputDir/post_opt_critpath_report.csv
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Vivado 12-975] No timing paths matched 'get_timing_paths -delay_type max -max_paths 50 -nworst 1'.
+WARNING: [Vivado 12-975] No timing paths matched 'get_timing_paths -delay_type min -max_paths 50 -nworst 1'.
+CSV file ./build/post_opt_critpath_report.csv has been created.
+
+# place_design
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 4 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2765.559 ; gain = 0.000 ; free physical = 4123 ; free virtual = 14892
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: df5308a5
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2765.559 ; gain = 0.000 ; free physical = 4123 ; free virtual = 14892
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2765.559 ; gain = 0.000 ; free physical = 4123 ; free virtual = 14892
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: df5308a5
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.84 . Memory (MB): peak = 2765.559 ; gain = 0.000 ; free physical = 4111 ; free virtual = 14880
+
+Phase 1.3 Build Placer Netlist Model
+Phase 1.3 Build Placer Netlist Model | Checksum: 1bf7b6c57
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.92 . Memory (MB): peak = 2789.570 ; gain = 24.012 ; free physical = 4109 ; free virtual = 14878
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 1bf7b6c57
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.92 . Memory (MB): peak = 2789.570 ; gain = 24.012 ; free physical = 4109 ; free virtual = 14878
+Phase 1 Placer Initialization | Checksum: 1bf7b6c57
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.92 . Memory (MB): peak = 2789.570 ; gain = 24.012 ; free physical = 4109 ; free virtual = 14878
+
+Phase 2 Final Placement Cleanup
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2789.570 ; gain = 0.000 ; free physical = 4109 ; free virtual = 14878
+Phase 2 Final Placement Cleanup | Checksum: 1bf7b6c57
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.92 . Memory (MB): peak = 2789.570 ; gain = 24.012 ; free physical = 4109 ; free virtual = 14878
+INFO: [Place 30-281] No place-able instance is found; design doesn't contain any instance or all instances are placed
+Ending Placer Task | Checksum: df5308a5
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.92 . Memory (MB): peak = 2789.570 ; gain = 24.012 ; free physical = 4109 ; free virtual = 14878
+INFO: [Common 17-83] Releasing license: Implementation
+10 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+# phys_opt_design
+Command: phys_opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [Vivado_Tcl 4-241] Physical synthesis in post route mode ( 100.0% nets are fully routed)
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Vivado_Tcl 4-383] Design worst setup slack (WNS) is greater than or equal to 0.000 ns. Skipping all physical synthesis optimizations.
+INFO: [Vivado_Tcl 4-232] No setup violation found. The netlist was not modified.
+INFO: [Common 17-83] Releasing license: Implementation
+6 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+phys_opt_design completed successfully
+# write_checkpoint -force $outputDir/post_place.dcp
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2789.570 ; gain = 0.000 ; free physical = 4122 ; free virtual = 14891
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2789.570 ; gain = 0.000 ; free physical = 4120 ; free virtual = 14891
+INFO: [Common 17-1381] The checkpoint '/home/nick/RISC-V-CPU/build/post_place.dcp' has been generated.
+# report_utilization -file $outputDir/post_place_util.rpt
+# report_timing_summary -file $outputDir/post_place_timing_summary.rpt
+# route_design -directive Explore
+Command: route_design -directive Explore
+Attempting to get a license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7vx485t'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-270] Using Router directive 'Explore'.
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 4 CPUs
+Checksum: PlaceDB: 597eb997 ConstDB: 0 ShapeSum: 85d44f0e RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: 6a1d5750
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:39 . Memory (MB): peak = 3146.465 ; gain = 356.895 ; free physical = 3812 ; free virtual = 14533
+Post Restoration Checksum: NetGraph: 3951da35 NumContArr: 30cb7d1b Constraints: 0 Timing: 0
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 6a1d5750
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:39 . Memory (MB): peak = 3146.465 ; gain = 356.895 ; free physical = 3811 ; free virtual = 14532
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 6a1d5750
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:39 . Memory (MB): peak = 3158.352 ; gain = 368.781 ; free physical = 3782 ; free virtual = 14503
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 6a1d5750
+
+Time (s): cpu = 00:01:05 ; elapsed = 00:00:39 . Memory (MB): peak = 3158.352 ; gain = 368.781 ; free physical = 3782 ; free virtual = 14503
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: c46f6496
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:40 . Memory (MB): peak = 3191.062 ; gain = 401.492 ; free physical = 3734 ; free virtual = 14503
+Phase 2 Router Initialization | Checksum: c46f6496
+
+Time (s): cpu = 00:01:06 ; elapsed = 00:00:40 . Memory (MB): peak = 3191.062 ; gain = 401.492 ; free physical = 3731 ; free virtual = 14499
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+
+Phase 3 Initial Routing
+ Number of Nodes with overlaps = 0
+Phase 3 Initial Routing | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+Phase 4.1 Global Iteration 0 | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+Phase 4 Rip-up And Reroute | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+Phase 5 Delay and Skew Optimization | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+Phase 6.1 Hold Fix Iter | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+Phase 6 Post Hold Fix | Checksum: c46f6496
+
+Time (s): cpu = 00:01:08 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 0 %
+  Global Horizontal Routing Utilization  = 0 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+    (Failed Nets is the sum of unrouted and partially routed nets)
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: c46f6496
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3717 ; free virtual = 14485
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: c46f6496
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3715 ; free virtual = 14484
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: c46f6496
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3715 ; free virtual = 14484
+
+Phase 10 Post Router Timing
+INFO: [Route 35-20] Post Routing Timing Summary | WNS=inf    | TNS=0.000  | WHS=inf    | THS=0.000  |
+
+INFO: [Route 35-61] The design met the timing requirement.
+Phase 10 Post Router Timing | Checksum: c46f6496
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:41 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3718 ; free virtual = 14487
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:01:09 ; elapsed = 00:00:42 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3981 ; free virtual = 14750
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+10 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:10 ; elapsed = 00:00:42 . Memory (MB): peak = 3203.262 ; gain = 413.691 ; free physical = 3981 ; free virtual = 14750
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+# write_checkpoint -force $outputDir/post_route.dcp
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3203.262 ; gain = 0.000 ; free physical = 3981 ; free virtual = 14750
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3203.262 ; gain = 0.000 ; free physical = 3977 ; free virtual = 14749
+INFO: [Common 17-1381] The checkpoint '/home/nick/RISC-V-CPU/build/post_route.dcp' has been generated.
+# report_timing_summary -file $outputDir/post_route_timing_summary.rpt 
+# report_timing -sort_by group -max_paths 100 -path_type summary -file $outputDir/post_route_timing.rpt
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 100 -nworst 1 -delay_type max -sort_by group.
+INFO: [Timing 38-72] No paths found.
+# report_clock_utilization -file $outputDir/clock_util.rpt
+# report_utilization -file $outputDir/post_route_util.rpt
+# report_power -file $outputDir/post_route_power.rpt
+Command: report_power -file ./build/post_route_power.rpt
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+0 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+# report_drc -file $outputDir/post_imp_drc.rpt
+Command: report_drc -file ./build/post_imp_drc.rpt
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Vivado/2019.2/data/ip'.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/nick/RISC-V-CPU/build/post_imp_drc.rpt.
+report_drc completed successfully
+# write_verilog -force $outputDir/cpu_impl_netlist.v
+# write_xdc -no_fixed_only -force $outputDir/top_impl.xdc
+# write_bitstream -force $outputDir/$topName.bit
+Command: write_bitstream -force ./build/CPU.bit
+Attempting to get a license for feature 'Implementation' and/or device 'xc7vx485t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7vx485t'
+Running DRC as a precondition to command write_bitstream
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [DRC 23-27] Running DRC with 4 threads
+INFO: [Vivado 12-3199] DRC finished with 0 Errors
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 4 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream ./build/CPU.bit...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-118] WebTalk data collection is enabled (User setting is ON. Install Setting is ON.).
+INFO: [Common 17-186] '/home/nick/RISC-V-CPU/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Wed Nov 20 00:14:51 2019. For additional details about this file, please refer to the WebTalk help file at /tools/Vivado/2019.2/doc/webtalk_introduction.html.
+INFO: [Common 17-83] Releasing license: Implementation
+10 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+write_bitstream completed successfully
+write_bitstream: Time (s): cpu = 00:00:21 ; elapsed = 00:00:28 . Memory (MB): peak = 3423.914 ; gain = 188.637 ; free physical = 3964 ; free virtual = 14732
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 20 00:14:51 2019...
