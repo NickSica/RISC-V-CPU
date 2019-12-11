@@ -20,7 +20,7 @@ VLOG_SRC_FILES = src/cpu_pkg.sv \
 		 src/Memory.sv \
 		 src/RegisterFile.sv \
 		 src/Writeback.sv \
-		 tb/CPU_tb.sv
+		 tb/tb.sv
 
 .PHONY: build clean
 
@@ -28,10 +28,8 @@ build:
 	$(vivado) $(script) -tclargs $(constr)
 
 test:
-	xvlog --nolog --sv $(VLOG_SRC_FILES)
-	xelab --nolog --debug typical CPU_tb -s top_sim
-	xsim --nolog top_sim -t waveform.tcl
-	xsim --nolog --g --view ./waves/CPU_tb_behav.wcfg top_sim
+	vlog -sv $(VLOG_SRC_FILES)
+	vsim -do wave.do -do "run -all" +nowarn3691 tb 
 
 clean: 
 	-rm -r build

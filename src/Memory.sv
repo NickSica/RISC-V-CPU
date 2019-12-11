@@ -23,18 +23,18 @@ module Memory(input logic clk_i, mem_write_i, mem_to_reg_i,
               input logic[63:0] mem_addr_i, wr_data_i, alu_result_i,
               output logic [63:0] rd_data_o);
 
-    logic [63:0] r_data, mem_addr_s, wr_data_s, alu_result_s;
+    logic [63:0] r_data, mem_addr_r, wr_data_r, alu_result_r;
 
     always_ff @(posedge clk_i) begin
-	mem_addr_s <= mem_addr_i;
-	wr_data_s <= wr_data_i;
-	alu_result_s <= alu_result_i;
+	mem_addr_r <= mem_addr_i;
+	wr_data_r <= wr_data_i;
+	alu_result_r <= alu_result_i;
     end
 
     always_comb begin
         case(mem_to_reg_i)
           1'b0: rd_data_o = r_data;
-          1'b1: rd_data_o = alu_result_s;
+          1'b1: rd_data_o = alu_result_r;
         endcase
     end    
     

@@ -17,7 +17,7 @@
  * 
 *********************************************************************************/
 
-module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
+module Execute(input logic clk_i, rst_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
 	       input logic [1:0]   alu_op_i, 
 	       input logic [2:0]   funct3_i,
 	       input logic [4:0]   rs1_i, rs2_i, rd_i, mem_rd_i, wb_rd_i,
@@ -30,17 +30,15 @@ module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
     logic [63:0] rs1_data, rs2_data, ex_result_r, mem_result_r, rs1_data_r, rs2_data_r;
     logic [31:0] imm_r;
     logic [6:0]  funct7_r;
-    logic [4:0]  rs1_r, rs2_r, mem_rd_r, wb_rd_r;
+    logic [4:0]  rs1_r, rs2_r;
     logic [3:0]  alu_ctrl_signal;
     logic [2:0]  funct3_r;
-    logic [1:0]  alu_op_r;
-    logic [1:0]  fwd_rs1, fwd_rs2 = 2'b0;
-    logic 	 mem_reg_write_r, wb_reg_write_r, alu_src_r;
+    logic [1:0]  fwd_rs1, fwd_rs2;
     
-    ForwardingUnit fwd_unit(.mem_reg_write_i(mem_reg_write_r), .wb_reg_write_i(wb_reg_write_r), .rs1_i(rs1_r), .rs2_i(rs2_r), .mem_rd_i(mem_rd_r), .wb_rd_i(wb_rd_r),
+    ForwardingUnit fwd_unit(.rst_i, .mem_reg_write_i, .wb_reg_write_i, .rs1_i(rs1_r), .rs2_i(rs2_r), .mem_rd_i, .wb_rd_i,
                            .fwd_rs1_o(fwd_rs1), .fwd_rs2_o(fwd_rs2));
                            
-    ALUControl alu_ctrl(.alu_op_i(alu_op_r), .funct3_i(funct3_r), .funct7_i(funct7_r), 
+    ALUControl alu_ctrl(.alu_op_i, .funct3_i(funct3_r), .funct7_i(funct7_r), 
                         .ctrl_signal_o(alu_ctrl_signal));
 
     ALU alu(.ctrl_signal_i(alu_ctrl_signal), .op1_i(rs1_data), .op2_i(rs2_data),
@@ -53,7 +51,7 @@ module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
             2'b10: rs1_data = ex_result_r;
         endcase 
        
-        casez({fwd_rs2, alu_src_r})
+        casez({fwd_rs2, alu_src_i})
             3'b??1: rs2_data = 64'(imm_r);
             3'b000: rs2_data = rs2_data_r;
             3'b010: rs2_data = mem_result_r;
@@ -68,16 +66,10 @@ module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
     end // always_comb
     
     always_ff @(posedge clk_i) begin
-	mem_reg_write_r <= mem_reg_write_i;
-	wb_reg_write_r <= wb_reg_write_i;
-	alu_src_r <= alu_src_i;
-	alu_op_r <= alu_op_i;
 	funct3_r <= funct3_i;
         rs1_r <= rs1_i;
 	rs2_r <= rs2_i;
 	rd_o <= rd_i;
-	mem_rd_r <= mem_rd_i;
-	wb_rd_r <= wb_rd_i;
 	funct7_r <= funct7_i;
 	ex_result_r <= ex_result_i;
 	mem_result_r <= mem_result_i;
@@ -86,6 +78,7 @@ module Execute(input logic clk_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
 	rs2_data_r <= rs2_data_i;
     end // always_ff @ (posedge clk_i)
 endmodule: Execute
+
 
 
 

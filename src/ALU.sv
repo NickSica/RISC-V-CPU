@@ -23,10 +23,10 @@ module ALU(input logic[3:0] ctrl_signal_i,
     
     always_comb begin
         case(ctrl_signal_i)
-            4'b0000: alu_result_o = op1_i & op2_i;                                         // And
-            4'b0001: alu_result_o = op1_i | op2_i;                                         // Or
-            4'b0010: alu_result_o = 64'(op1_i + op2_i);                                    // Addition
-            4'b0110: alu_result_o = 64'(op1_i - op2_i);                                    // Subtraction
+            4'b0000: alu_result_o = op1_i & op2_i;                                           // And
+            4'b0001: alu_result_o = op1_i | op2_i;                                           // Or
+            4'b0010: alu_result_o = signed'(op1_i) + signed'(op2_i);                         // Addition
+            4'b0110: alu_result_o = signed'(op1_i) - signed'(op2_i);                         // Subtraction
             //4'b0111: alu_result_o = (signed'(op1_i) < signed'(op2_i)) ? 32'b1 : 32'b0;     // Set if Less than
             //4'b0010: alu_result_o = op1_i << op2_i[4:0];                                   // Logic left shift
             //4'b0011: alu_result_o = (signed'(op1_i) < signed'(op2_i)) ? 32'b1 : 32'b0;     // Signed less than
