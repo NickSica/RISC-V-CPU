@@ -1,0 +1,4 @@
+[submodule "src/fpga_cores"]
+	path = src/fpga_cores
+	url = https://github.com/NickSica/fpga_cores
+	branch = master

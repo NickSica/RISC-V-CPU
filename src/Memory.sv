@@ -19,25 +19,28 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Memory(input logic clk_i, mem_write_i, mem_to_reg_i,
-              input logic[63:0] mem_addr_i, wr_data_i, alu_result_i,
+module Memory(input logic clk_i, mem_write_i, mem_rd_i, mem_to_reg_i,
+              input logic [2:0] funct3_i,
+              input logic [63:0] mem_addr_i, wr_data_i, alu_result_i,
               output logic [63:0] rd_data_o);
 
     logic [63:0] r_data, mem_addr_r, wr_data_r, alu_result_r;
 
     always_ff @(posedge clk_i) begin
-	mem_addr_r <= mem_addr_i;
-	wr_data_r <= wr_data_i;
-	alu_result_r <= alu_result_i;
+	    mem_addr_r <= mem_addr_i;
+        wr_data_r <= wr_data_i;
+	    alu_result_r <= alu_result_i;
     end
 
     always_comb begin
         case(mem_to_reg_i)
-          1'b0: rd_data_o = r_data;
-          1'b1: rd_data_o = alu_result_r;
+            1'b0: rd_data_o = r_data;
+            1'b1: rd_data_o = alu_result_r;
         endcase
     end    
     
+    Cache cache (.clk_i, .wr_en_i(mem_write_i), .rd_en_i(mem_rd_i), .rst_i(rst), .store_type_i(funct3_i), .addr_i(mem_addr_r), .data_i(wr_data_r), .data_o(data));
+
     //RAM ram(.clka(clk), .ena(1'b1), .wea(memWrite), .addra(addr), .dina(w_data), .douta(r_data));
 endmodule
 

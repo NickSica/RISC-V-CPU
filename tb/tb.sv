@@ -38,13 +38,15 @@ module tb();
     logic [31:0]     wr_instr = 32'b0;
     logic [31:0]     ex_instr, mem_instr, wb_instr;
     logic 	     wr_instr_en = 1'b0;
-    logic 	     clk = 0;
+    logic 	     mem_clk = 1'b0;
+    logic        clk = 1'b0;
     logic 	     rst; 	     
     int 	     counter = 0;
     int 	     rs1, rs2, imm, result;
-    always #1 clk = !clk;
+    always #4 clk = !clk;
+    always #1 mem_clk = !mem_clk;
 
-    CPU cpu(.clk_i(clk), .rst_i(rst), .wr_instr_en_i(wr_instr_en), .wr_instr_i(wr_instr));
+    CPU cpu(.clk_i(clk), .mem_clk_i(mem_clk), .rst_i(rst), .wr_instr_en_i(wr_instr_en), .wr_instr_i(wr_instr));
 
     initial begin
 	int result;

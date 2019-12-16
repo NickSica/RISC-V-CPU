@@ -1,0 +1,3 @@
+vlib.exe work
+vlog.exe -sv src\cpu_pkg.sv src\fpga_cores\cache\LRU.sv src\fpga_cores\cache\Cache.sv src\ALUControl.sv src\ALU.sv src\Cache.sv src\Control.sv src\CPU.sv src\Execute.sv src\ForwardingUnit.sv src\HazardDetection.sv src\ImmGen.sv src\InstructionCache.sv src\InstructionDecode.sv src\InstructionFetch.sv src\Interfaces.sv src\Memory.sv src\RegisterFile.sv src\Writeback.sv tb\tb.sv
+vsim.exe -do "wave.do" tb
