@@ -1,5 +1,5 @@
 # vsim -do "wave.do" -do "run -all" "+nowarn3691" tb 
-# Start time: 00:15:41 on Dec 16,2019
+# Start time: 18:11:05 on Dec 16,2019
 # Loading sv_std.std
 # Loading work.tb_sv_unit
 # Loading work.tb
@@ -23,6 +23,14 @@
 # Loading work.Cache
 # Loading work.LRU
 # do wave.do
+# ** Error: (vish-4014) No objects found matching '/tb/cpu/id_stage/ex_rd_r'.
+# Executing ONERROR command at macro ./wave.do line 46
+# ** Error: (vish-4014) No objects found matching '/tb/cpu/mem_stage/cache/store_type_i'.
+# Executing ONERROR command at macro ./wave.do line 107
+# (vsim-4077) Logging very large object: /tb/cpu/mem_stage/cache/ram 
+# (vsim-4077) Logging very large object: /tb/cpu/mem_stage/cache/genblk1/data_store 
+# ** Error: (vish-4014) No objects found matching '/tb/cpu/mem_mem_rd_r'.
+# Executing ONERROR command at macro ./wave.do line 180
 # run -all
 # ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/librt.so.1 : module was loaded at an absolute address.
 # ** Warning: (vsim-3116) Problem reading symbols from /usr/lib32/libdl.so.2 : module was loaded at an absolute address.
@@ -256,5 +264,5 @@
 # HDL call sequence:
 # Stopped at tb/tb.sv 101 Module tb
 # 
-# End time: 00:17:52 on Dec 16,2019, Elapsed time: 0:02:11
-# Errors: 3, Warnings: 7
+# End time: 18:15:06 on Dec 16,2019, Elapsed time: 0:04:01
+# Errors: 31, Warnings: 9

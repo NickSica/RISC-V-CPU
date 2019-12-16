@@ -27,7 +27,7 @@ module Memory(input logic clk_i, mem_clk_i, mem_wr_en_i, mem_rd_en_i, mem_to_reg
     logic [63:0] r_data, mem_addr_r, wr_data_r, alu_result_r;
 
     always_ff @(posedge clk_i) begin
-	mem_addr_r <= mem_addr_i;
+	mem_addr_r <= (mem_addr_i << 3);
         wr_data_r <= wr_data_i;
 	alu_result_r <= alu_result_i;
     end
@@ -39,7 +39,8 @@ module Memory(input logic clk_i, mem_clk_i, mem_wr_en_i, mem_rd_en_i, mem_to_reg
         endcase
     end    
     
-    Cache cache (.clk_i(mem_clk_i), .wr_en_i(mem_wr_en_i), .rd_en_i(mem_rd_en_i), .rst_i(rst), .store_type_i(funct3_i), .addr_i(mem_addr_r), .data_i(wr_data_r), .data_o(r_data));
+    Cache cache (.clk_i(mem_clk_i), .wr_en_i(mem_wr_en_i), .rd_en_i(mem_rd_en_i), .rst_i(rst), .addr_i(mem_addr_r | funct3_i), .data_i(wr_data_r), 
+		 .data_o(r_data));
 
     //RAM ram(.clka(clk), .ena(1'b1), .wea(memWrite), .addra(addr), .dina(w_data), .douta(r_data));
 endmodule

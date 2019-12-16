@@ -61,6 +61,7 @@ module CPU(input logic clk_i, mem_clk_i, rst_i, wr_instr_en_i,
                               .pc_o(if_pc), .instr_o(if_instr));
 
     InstructionDecode id_stage(.clk_i, .rst_i, .wr_reg_en_i(wb_reg_write_r), .ex_rd_i(ex_rd_r), .wb_rd_i(wb_rd_r), .instr_i(if_instr), .rd_data_i(wb_rd_data_r), .pc_i(if_pc),
+			       .ex_mem_read_en_i(ex_mem_read_r),
 			       .ctrl_signals_o(ctrl_signals), .pc_src_o(if_pc_src), .flush_o(if_flush), .pc_en_o(if_pc_en), .if_en_o(if_en), .funct3_o(id_funct3), 
 			       .funct7_o(id_funct7), .rs1_o(id_rs1), .rs2_o(id_rs2), .rd_o(id_rd), .imm_o(id_imm), .rs1_data_o(id_rs1_data), .rs2_data_o(id_rs2_data), 
 			       .branch_pc_o(branch_pc));
@@ -70,7 +71,7 @@ module CPU(input logic clk_i, mem_clk_i, rst_i, wr_instr_en_i,
 		     .mem_result_i(mem_rd_data), .imm_i(id_imm), .rs1_data_i(id_rs1_data), .rs2_data_i(id_rs2_data),
 		     .rd_o(ex_rd_r), .wr_ram_data_o(ex_wr_ram_data), .alu_result_o(ex_alu_result));
 
-    Memory mem_stage(.clk_i, .mem_clk_i, .mem_wr_en_i(mem_mem_write_r), .mem_rd_en_i(mem_mem_rd_r), .mem_to_reg_i(mem_mem_to_reg_r), .funct3_i(mem_funct3_r), 
+    Memory mem_stage(.clk_i, .mem_clk_i, .mem_wr_en_i(mem_mem_write_r), .mem_rd_en_i(mem_mem_read_r), .mem_to_reg_i(mem_mem_to_reg_r), .funct3_i(mem_funct3_r), 
 		     .mem_addr_i(ex_alu_result), .wr_data_i(ex_wr_ram_data), .alu_result_i(ex_alu_result),
 		     .rd_data_o(mem_rd_data));
 

@@ -11,7 +11,7 @@ cModel Technology
 Z0 d/home/nick/RISC-V-CPU
 vALU
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1576473335
+Z2 !s110 1576537860
 !i10b 1
 !s100 RmN1g=Q2ze^aNl1RhCTm20
 !s11b ;G7?Y_Q2m<JHMCgifPnHD1
@@ -27,7 +27,7 @@ Z5 OV;L;2019.2;69
 r1
 !s85 0
 31
-Z6 !s108 1576473335.000000
+Z6 !s108 1576537860.000000
 !s107 tb/tb.sv|src/Writeback.sv|src/RegisterFile.sv|src/Memory.sv|src/Interfaces.sv|src/InstructionFetch.sv|src/InstructionDecode.sv|src/InstructionCache.sv|src/ImmGen.sv|src/HazardDetection.sv|src/ForwardingUnit.sv|src/Execute.sv|src/CPU.sv|src/Control.sv|src/ALU.sv|src/ALUControl.sv|src/fpga_cores/cache/LRU.sv|src/fpga_cores/cache/data_cache.sv|src/cpu_pkg.sv|
 Z7 !s90 -sv|src/cpu_pkg.sv|src/fpga_cores/cache/data_cache.sv|src/fpga_cores/cache/LRU.sv|src/ALUControl.sv|src/ALU.sv|src/Control.sv|src/CPU.sv|src/Execute.sv|src/ForwardingUnit.sv|src/HazardDetection.sv|src/ImmGen.sv|src/InstructionCache.sv|src/InstructionDecode.sv|src/InstructionFetch.sv|src/Interfaces.sv|src/Memory.sv|src/RegisterFile.sv|src/Writeback.sv|tb/tb.sv|
 !i113 1
@@ -63,13 +63,13 @@ vCache
 R1
 R2
 !i10b 1
-!s100 P7CI^FL?33I8CHag:?Ddg2
-!s11b h[FMP<HzdXCAEgfZJ4FED3
-IM2MPQDCDT?g5KP:383F8M3
+!s100 ;JGRmeY[n4bkK>6VQgFa>0
+!s11b K:ahAZ1?cLzW?=ASieM0N1
+Id:6=?G6H8;Wah7KgnKCR_0
 R3
 S1
 R0
-w1576473323
+w1576537856
 8src/fpga_cores/cache/data_cache.sv
 Fsrc/fpga_cores/cache/data_cache.sv
 Z10 L0 21
@@ -87,17 +87,17 @@ n@cache
 vControl
 R1
 Z11 DXx4 work 7 cpu_pkg 0 22 o1_i]kh6=z:RSQ2nK1^7U1
-DXx4 work 15 Control_sv_unit 0 22 <Ijg]GaZj780DN>MZDkkB0
+DXx4 work 15 Control_sv_unit 0 22 ^N]9kG]D`lBm0SGaDk_[?0
 R3
 r1
 !s85 0
 !i10b 1
-!s100 RR;0]^9fN3f5N3^]P@JHT1
-IUe@Tb^o_cbbn;DflR]b=83
+!s100 78:PkmMH<L^7KzKFHVikT0
+IOhHSU;oe]1:b0dIZ0K?E42
 !s105 Control_sv_unit
 S1
 R0
-Z12 w1576029041
+Z12 w1576536792
 Z13 8src/Control.sv
 Z14 Fsrc/Control.sv
 R10
@@ -113,12 +113,12 @@ n@control
 XControl_sv_unit
 R1
 R11
-V<Ijg]GaZj780DN>MZDkkB0
+V^N]9kG]D`lBm0SGaDk_[?0
 r1
 !s85 0
 !i10b 1
-!s100 feSg9a8CQbh`eh;0U`c^K0
-I<Ijg]GaZj780DN>MZDkkB0
+!s100 `S:Y[JNSbz8Ie@UW6[3QP0
+I^N]9kG]D`lBm0SGaDk_[?0
 !i103 1
 S1
 R0
@@ -138,17 +138,17 @@ n@control_sv_unit
 vCPU
 R1
 R11
-DXx4 work 11 CPU_sv_unit 0 22 FN`;R;0P<CARi_@B9d0D60
+DXx4 work 11 CPU_sv_unit 0 22 dIZ:@NTXBan;bfgW<zBP11
 R3
 r1
 !s85 0
 !i10b 1
-!s100 _NlK_AAkK?ci>:]JgL2@:3
-I9=aVFHLT9KQC:gZ4CE@k^0
+!s100 ^>DaFD:[H`Dk?cJmm=zzN1
+I;Uc]QNmmDND23eehZYeJi1
 !s105 CPU_sv_unit
 S1
 R0
-Z16 w1576462027
+Z16 w1576536950
 Z17 8src/CPU.sv
 Z18 Fsrc/CPU.sv
 R10
@@ -188,12 +188,12 @@ R8
 XCPU_sv_unit
 R1
 R11
-VFN`;R;0P<CARi_@B9d0D60
+VdIZ:@NTXBan;bfgW<zBP11
 r1
 !s85 0
 !i10b 1
-!s100 KS27>jK_VC^5acAQ1mnS70
-IFN`;R;0P<CARi_@B9d0D60
+!s100 ?7U]RD7EjWZH9DPdkFSD:1
+IdIZ:@NTXBan;bfgW<zBP11
 !i103 1
 S1
 R0
@@ -413,17 +413,17 @@ n@instruction@cache
 vInstructionDecode
 R1
 R11
-DXx4 work 25 InstructionDecode_sv_unit 0 22 O:@5oRzldQk34Ac;n6SF51
+DXx4 work 25 InstructionDecode_sv_unit 0 22 T;=Hc`NHU@QOfeUknSc9S1
 R3
 r1
 !s85 0
 !i10b 1
-!s100 C_z826V>m_R@KD6nYl3Y10
-ISkT1?FLzjMnJGM[OVb2Qc0
+!s100 ObYDY2VN;5NO8LX?zUglO3
+I2d>P35cP:`7UK^R78K=1G1
 !s105 InstructionDecode_sv_unit
 S1
 R0
-Z22 w1576028786
+Z22 w1576536901
 Z23 8src/InstructionDecode.sv
 Z24 Fsrc/InstructionDecode.sv
 R10
@@ -439,12 +439,12 @@ n@instruction@decode
 XInstructionDecode_sv_unit
 R1
 R11
-VO:@5oRzldQk34Ac;n6SF51
+VT;=Hc`NHU@QOfeUknSc9S1
 r1
 !s85 0
 !i10b 1
-!s100 E_;iczQn2ZS_zzAgblm:O2
-IO:@5oRzldQk34Ac;n6SF51
+!s100 LA92d:D:NU@<?K7k46fVz1
+IT;=Hc`NHU@QOfeUknSc9S1
 !i103 1
 S1
 R0
@@ -515,13 +515,13 @@ vMemory
 R1
 R2
 !i10b 1
-!s100 K@1Yo[2>XaO6FBICnnXOK2
-!s11b G=bE=hdnHQdh7LZMmSEKE0
-IR[Q=:j0QW>oA9e5`8W;C62
+!s100 Vef4CES>5SK?fbRcnK^mM2
+!s11b _A3OZ7?jOh`cY9_QW<oMJ1
+IgX^^Bb?3kHlEa[4bNm?gY1
 R3
 S1
 R0
-w1576462011
+w1576537015
 8src/Memory.sv
 Fsrc/Memory.sv
 L0 22

@@ -18,7 +18,7 @@
 *********************************************************************************/
 import cpu_pkg::*;
 
-module InstructionDecode(input logic         clk_i, rst_i, wr_reg_en_i,
+module InstructionDecode(input logic         clk_i, rst_i, wr_reg_en_i, ex_mem_read_en_i,
                          input logic [4:0]   ex_rd_i, wb_rd_i,
                          input logic [31:0]  instr_i,
 			 input logic [63:0]  rd_data_i, pc_i,
@@ -32,11 +32,11 @@ module InstructionDecode(input logic         clk_i, rst_i, wr_reg_en_i,
 
     logic [63:0] rd_data_r, pc_r;
     logic [31:0] instr_r;
-    logic [4:0]  ex_rd_r, wb_rd_r, rt_next;
+    logic [4:0]  wb_rd_r, rt_next;
     logic 	 inhibit_ctrl;
     logic 	 wr_reg_en_r, is_branch;
     
-    HazardDetection hazard_detection(.rst_i, .r_mem_en_i(ctrl_signals_o.mem_read), .branch_taken_i(pc_src_o), .ex_rd_i(ex_rd_r), .rs1_i(instr_r[19:15]), .rs2_i(instr_r[24:20]), 
+    HazardDetection hazard_detection(.rst_i, .r_mem_en_i(ex_mem_read_en_i), .branch_taken_i(pc_src_o), .ex_rd_i, .rs1_i(instr_r[19:15]), .rs2_i(instr_r[24:20]), 
 				     .inhibit_ctrl_o(inhibit_ctrl), .flush_o, .pc_en_o, .if_en_o);
 
     RegisterFile reg_file(.clk_i, .rst_i(1'b0), .rs1_i(instr_r[19:15]), .rs2_i(instr_r[24:20]), .wr_reg_en_i(wr_reg_en_r), .rd_data_i(rd_data_r), .rd_i(wb_rd_r),
@@ -73,7 +73,6 @@ module InstructionDecode(input logic         clk_i, rst_i, wr_reg_en_i,
 	rd_data_r <= rd_data_i;
 	pc_r <= pc_i;
 	instr_r <= instr_i;
-	ex_rd_r <= ex_rd_i;
 	wb_rd_r <= wb_rd_i;
 	wr_reg_en_r <= wr_reg_en_i;
     end

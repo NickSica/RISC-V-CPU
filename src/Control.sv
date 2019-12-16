@@ -33,6 +33,7 @@ module Control(input logic        inhibit_control_i,
                   ctrl_signals_o.alu_src   = 1'b0;
                   ctrl_signals_o.mem_write = 4'b0000;
                   ctrl_signals_o.mem_read  = 1'b0;
+		  ctrl_signals_o.mem_to_reg = 1'b1;
 		  is_branch_o = 1'b0;		    
               end   
               
