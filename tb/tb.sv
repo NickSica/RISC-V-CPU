@@ -46,7 +46,7 @@ module tb();
     always #4 clk = !clk;
     always #1 mem_clk = !mem_clk;
 
-    CPU cpu(.clk_i(clk), .mem_clk_i(mem_clk), .rst_i(rst), .wr_instr_en_i(wr_instr_en), .wr_instr_i(wr_instr));
+    CPU cpu(.clk_i(clk), .mem_clk_i(mem_clk), .rst_i(rst), .wr_instr_en_i(wr_instr_en), .wr_instr_i(wr_instr), .out_o());
 
     initial begin
 	int result;
@@ -62,8 +62,9 @@ module tb();
 	end
 	$fclose(fd);
 	$readmemb("tb/test01.dat", cpu.if_stage.instr_cache.cache_c);
+	$readmemb("src/fpga_cores/cache/ram.dat", cpu.mem_stage.cache.ram);
 	rst = 1'b1;
-	#3 rst = 1'b0;
+	#12 rst = 1'b0;
     end
 
     /*
@@ -96,7 +97,7 @@ module tb();
 	mem_instr <= ex_instr;
 	wb_instr <= mem_instr;
 
-	if(counter == 20) begin
+	if(counter == 30) begin
 	    $exit();
 	end else begin
 	    counter++;

@@ -4,9 +4,10 @@ tb_script = waveform.tcl
 constr = ./V707/constraints.xdc
 
 VLOG_SRC_FILES = src/cpu_pkg.sv \
+		 src/fpga_cores/cache/data_cache.sv \
+		 src/fpga_cores/cache/LRU.sv \
 		 src/ALUControl.sv \
 		 src/ALU.sv \
-		 src/Cache.sv \
 		 src/Control.sv \
 		 src/CPU.sv \
 		 src/Execute.sv \

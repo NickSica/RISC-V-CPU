@@ -46,7 +46,7 @@ module InstructionFetch(input logic clk_i, rst_i, pc_src_i, pc_en_i, if_en_i, fl
 	end // else: !if(rst_i)
     end
     
-    InstructionCache instr_cache(.wr_instr_en_i, .wr_instr_i, .addr_i(pc_o), .instr_o(instr_c));
+    InstructionCache instr_cache(.rst_i, .wr_instr_en_i, .wr_instr_i, .addr_i(pc_o), .instr_o(instr_c));
 endmodule
 
 

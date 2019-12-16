@@ -52,7 +52,7 @@ module Execute(input logic clk_i, rst_i, mem_reg_write_i, wb_reg_write_i, alu_sr
         endcase 
        
         casez({fwd_rs2, alu_src_i})
-            3'b??1: rs2_data = 64'(imm_r);
+            3'b??1: rs2_data = 64'(signed'(imm_r));
             3'b000: rs2_data = rs2_data_r;
             3'b010: rs2_data = mem_result_r;
             3'b100: rs2_data = ex_result_r;
