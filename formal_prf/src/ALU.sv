@@ -36,4 +36,4 @@ module ALU(input logic[3:0] ctrl_signal_i,
           //4'b0111: alu_result_o = op1_i >>> op2_i[4:0];                                  // Arithmetic right shift
         endcase
     end 
-endmodule: ALU
+endmodule

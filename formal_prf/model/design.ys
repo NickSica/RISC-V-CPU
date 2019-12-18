@@ -1,0 +1,31 @@
+# running in formal_prf/src/
+read -sv -formal ALUControl.sv
+read -sv -formal ALU.sv
+read -sv -formal Control.sv
+read -sv -formal cpu_pkg.sv
+read -sv -formal CPU.sv
+read -sv -formal Execute.sv
+read -sv -formal ForwardingUnit.sv
+read -sv -formal fpga_cores/cache/data_cache.sv
+read -sv -formal fpga_cores/cache/LRU.sv
+read -sv -formal HazardDetection.sv
+read -sv -formal ImmGen.sv
+read -sv -formal InstructionCache.sv
+read -sv -formal InstructionDecode.sv
+read -sv -formal InstructionFetch.sv
+read -sv -formal Interfaces.sv
+read -sv -formal Memory.sv
+read -sv -formal RegisterFile.sv
+read -sv -formal Writeback.sv
+prep -top CPU
+
+memory_nordff
+async2sync
+chformal -assume -early
+chformal -live -fair -cover -remove
+opt_clean
+setundef -anyseq
+opt -keepdc -fast
+check
+hierarchy -simcheck
+write_ilang ../model/design.il

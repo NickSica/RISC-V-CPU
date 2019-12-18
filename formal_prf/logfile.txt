@@ -1,0 +1,27 @@
+SBY 19:20:54 [formal_prf] Removing direcory 'formal_prf'.
+SBY 19:20:54 [formal_prf] Copy 'src/ALUControl.sv' to 'formal_prf/src/ALUControl.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/ALU.sv' to 'formal_prf/src/ALU.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/Control.sv' to 'formal_prf/src/Control.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/cpu_pkg.sv' to 'formal_prf/src/cpu_pkg.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/CPU.sv' to 'formal_prf/src/CPU.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/Execute.sv' to 'formal_prf/src/Execute.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/ForwardingUnit.sv' to 'formal_prf/src/ForwardingUnit.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/fpga_cores/cache/data_cache.sv' to 'formal_prf/src/data_cache.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/fpga_cores/cache/LRU.sv' to 'formal_prf/src/LRU.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/HazardDetection.sv' to 'formal_prf/src/HazardDetection.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/ImmGen.sv' to 'formal_prf/src/ImmGen.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/InstructionCache.sv' to 'formal_prf/src/InstructionCache.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/InstructionDecode.sv' to 'formal_prf/src/InstructionDecode.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/InstructionFetch.sv' to 'formal_prf/src/InstructionFetch.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/Interfaces.sv' to 'formal_prf/src/Interfaces.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/Memory.sv' to 'formal_prf/src/Memory.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/RegisterFile.sv' to 'formal_prf/src/RegisterFile.sv'.
+SBY 19:20:54 [formal_prf] Copy 'src/Writeback.sv' to 'formal_prf/src/Writeback.sv'.
+SBY 19:20:54 [formal_prf] engine_0: smtbmc
+SBY 19:20:54 [formal_prf] base: starting process "cd formal_prf/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY 19:20:54 [formal_prf] base: Control.sv:19: ERROR: syntax error, unexpected TOK_ID
+SBY 19:20:54 [formal_prf] base: finished (returncode=1)
+SBY 19:20:54 [formal_prf] base: job failed. ERROR.
+SBY 19:20:54 [formal_prf] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 19:20:54 [formal_prf] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 19:20:54 [formal_prf] DONE (ERROR, rc=16)

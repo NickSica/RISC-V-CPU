@@ -1,0 +1,47 @@
+[options]
+mode prove
+depth 20
+
+[engines]
+smtbmc
+
+[script]
+read -sv -formal ALUControl.sv
+read -sv -formal ALU.sv
+read -sv -formal Control.sv
+read -sv -formal cpu_pkg.sv
+read -sv -formal CPU.sv
+read -sv -formal Execute.sv
+read -sv -formal ForwardingUnit.sv
+read -sv -formal fpga_cores/cache/data_cache.sv
+read -sv -formal fpga_cores/cache/LRU.sv
+read -sv -formal HazardDetection.sv
+read -sv -formal ImmGen.sv
+read -sv -formal InstructionCache.sv
+read -sv -formal InstructionDecode.sv
+read -sv -formal InstructionFetch.sv
+read -sv -formal Interfaces.sv
+read -sv -formal Memory.sv
+read -sv -formal RegisterFile.sv
+read -sv -formal Writeback.sv
+prep -top CPU
+
+[files]
+src/ALUControl.sv
+src/ALU.sv
+src/Control.sv
+src/cpu_pkg.sv
+src/CPU.sv
+src/Execute.sv
+src/ForwardingUnit.sv
+src/fpga_cores/cache/data_cache.sv
+src/fpga_cores/cache/LRU.sv
+src/HazardDetection.sv
+src/ImmGen.sv
+src/InstructionCache.sv
+src/InstructionDecode.sv
+src/InstructionFetch.sv
+src/Interfaces.sv
+src/Memory.sv
+src/RegisterFile.sv
+src/Writeback.sv
