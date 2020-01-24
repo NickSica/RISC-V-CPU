@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:39:14 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Fri Nov 22 17:47:24 2019
+# Process ID: 4814
+# Current directory: /home/nick/fpga_implementations/vivado_ips/managed_ip_project/managed_ip_project.runs/RAM_synth_1
+# Command line: vivado -log RAM.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source RAM.tcl
+# Log file: /home/nick/fpga_implementations/vivado_ips/managed_ip_project/managed_ip_project.runs/RAM_synth_1/RAM.vds
+# Journal file: /home/nick/fpga_implementations/vivado_ips/managed_ip_project/managed_ip_project.runs/RAM_synth_1/vivado.jou
+#-----------------------------------------------------------
+source RAM.tcl -notrace

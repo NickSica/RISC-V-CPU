@@ -1,0 +1,56 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Aug 26 10:00:53 2019
+# Process ID: 2042
+# Current directory: /home/nick/fpga_implementations/multiplier
+# Command line: vivado -mode tcl -source compile.tcl -tclargs constraints verilog
+# Log file: /home/nick/fpga_implementations/multiplier/vivado.log
+# Journal file: /home/nick/fpga_implementations/multiplier/vivado.jou
+#-----------------------------------------------------------
+INFO: [Common 17-1460] Use of init.tcl in /home/nick/.Xilinx/Vivado/init.tcl is deprecated. Please use Vivado_init.tcl 
+Sourcing tcl script '/home/nick/.Xilinx/Vivado/init.tcl'
+source compile.tcl
+# set partNum xc7a100tcsg324-1
+# set outputDir ./build
+# set topName multiplier
+# file mkdir $outputDir
+# set arg_len [ llength $argv ]
+# if {$arg_len == 0} {
+#     read_verilog [ glob ./src/*.sv ]
+#     read_xdc ./src/constraints.xdc
+# } elseif {$arg_len == 1} {
+#     read_xdc ./src/[lindex $argv 0]
+# } elseif {$arg_len == 2} {
+#     set lang [lindex $argv 1]
+#     set constr ./src/[lindex $argv 0]
+#     if {$lang == "vhdl"} {
+#         read_vhdl [ glob ./src/*.vhd ]
+# 	read_xdc $constr
+#     } elseif {$lang == "verilog"} {
+#         read_verilog -sv [ glob ./src/*.sv ]
+# 	read_xdc $constr
+#     } elseif {$lang == "both"} {
+# 	read_verilog -sv [ glob ./src/*.sv ]
+# 	read_vhdl [ glob ./src/*.vhd ]
+# 	read_xdc $contr
+#     }
+# 
+# }
+# synth_design -top $topName -part $partNum
+Command: synth_design -top multiplier -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 2053 
+ERROR: [Synth 8-2715] syntax error near genvar [/home/nick/fpga_implementations/multiplier/src/adder_array.sv:4]
+Failed to read verilog '/home/nick/fpga_implementations/multiplier/src/adder_array.sv'
+INFO: [Common 17-83] Releasing license: Synthesis
+3 Infos, 0 Warnings, 0 Critical Warnings and 2 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+quit
+INFO: [Common 17-206] Exiting Vivado at Mon Aug 26 10:01:42 2019...

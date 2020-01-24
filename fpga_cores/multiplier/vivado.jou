@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Aug 26 10:00:53 2019
+# Process ID: 2042
+# Current directory: /home/nick/fpga_implementations/multiplier
+# Command line: vivado -mode tcl -source compile.tcl -tclargs constraints verilog
+# Log file: /home/nick/fpga_implementations/multiplier/vivado.log
+# Journal file: /home/nick/fpga_implementations/multiplier/vivado.jou
+#-----------------------------------------------------------
+source compile.tcl
+quit
