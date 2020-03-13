@@ -17,15 +17,29 @@
  * 
 *********************************************************************************/
 
-module Execute(input logic clk_i, rst_i, mem_reg_write_i, wb_reg_write_i, alu_src_i,
-	       input logic [1:0]   alu_op_i, 
-	       input logic [2:0]   funct3_i,
-	       input logic [4:0]   rs1_i, rs2_i, rd_i, mem_rd_i, wb_rd_i,
-	       input logic [6:0]   funct7_i,
-	       input logic [31:0]  imm_i,
-	       input logic [63:0]  ex_result_i, mem_result_i, rs1_data_i, rs2_data_i,
-	       output logic [4:0]  rd_o,
-	       output logic [63:0] wr_ram_data_o, alu_result_o);
+module execute (
+    input  logic 	clk_i,
+    input  logic 	rst_i, 
+    input  logic 	mem_reg_write_i,
+    input  logic 	wb_reg_write_i,
+    input  logic 	alu_src_i,
+    input  logic [1:0] 	alu_op_i, 
+    input  logic [2:0] 	funct3_i,
+    input  logic [4:0] 	rs1_i,
+    input  logic [4:0] 	rs2_i,
+    input  logic [4:0] 	rd_i,
+    input  logic [4:0] 	mem_rd_i,
+    input  logic [4:0] 	wb_rd_i,
+    input  logic [6:0] 	funct7_i,
+    input  logic [31:0]	imm_i,
+    input  logic [63:0]	ex_result_i,
+    input  logic [63:0]	mem_result_i,
+    input  logic [63:0]	rs1_data_i,
+    input  logic [63:0]	rs2_data_i,
+    output logic [4:0] 	rd_o,
+    output logic [63:0] wr_ram_data_o,
+    output logic [63:0] alu_result_o
+  );
     
     logic [63:0] rs1_data, rs2_data, ex_result_r, mem_result_r, rs1_data_r, rs2_data_r;
     logic [31:0] imm_r;
